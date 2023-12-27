@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://boyn2rfrxnuh"]
+
+[ext_resource type="Script" path="res://Scripts/Classes/Goblin.gd" id="1_m3jd8"]
+[ext_resource type="Texture2D" uid="uid://3a760m2o0x76" path="res://Assets/My Sprites/LowGoblin.png" id="2_b2hbe"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xgo0f"]
+radius = 9.0
+height = 34.0
+
+[node name="Goblin" type="CharacterBody2D"]
+script = ExtResource("1_m3jd8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_b2hbe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6)
+shape = SubResource("CapsuleShape2D_xgo0f")

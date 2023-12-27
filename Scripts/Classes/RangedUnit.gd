@@ -1,7 +1,5 @@
 extends Unit
-class_name Melee_Unit
+class_name Ranged_Unit
 
-
-	
-func Attack():
+func Ranged_Attack():
 	print("Dealt ", attackDMG," damage.")
