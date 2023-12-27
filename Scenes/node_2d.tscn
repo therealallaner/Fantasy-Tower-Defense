@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhbremyfpt2ig"]
+
+[ext_resource type="Texture2D" uid="uid://3a760m2o0x76" path="res://Assets/My Sprites/LowGoblin.png" id="1_solo5"]
+[ext_resource type="Script" path="res://Goblin.gd" id="2_k3rb0"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Goblin" type="CharacterBody2D" parent="."]
+script = ExtResource("2_k3rb0")
+
+[node name="Sprite2D" type="Sprite2D" parent="Goblin"]
+position = Vector2(319, 157)
+texture = ExtResource("1_solo5")
