@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://dr813yy1g2r72"]
+
+[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_dcpqo"]
+[ext_resource type="Texture2D" uid="uid://dmroa0bn4whdh" path="res://Assets/UI/TestBG (1).jpg" id="1_mxwqa"]
+[ext_resource type="Texture2D" uid="uid://bsk4ie7qrdyor" path="res://Assets/UI/MainMenuMenuBG.png" id="2_k45ex"]
+[ext_resource type="Texture2D" uid="uid://0dp8wdbyve4j" path="res://Assets/UI/MainMenuTitle.png" id="3_ioeq8"]
+[ext_resource type="Theme" uid="uid://bbu7b6vmdt6rg" path="res://Assets/UI/Themes/new_theme.tres" id="4_8oe7h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mi7w1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u4ei4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cluw7"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_dcpqo")
+
+[node name="TestBg(1)" type="Sprite2D" parent="."]
+position = Vector2(960, 538)
+scale = Vector2(1.52, 1.52)
+texture = ExtResource("1_mxwqa")
+
+[node name="MainMenuMenuBg" type="Sprite2D" parent="."]
+position = Vector2(975, 588)
+scale = Vector2(1, 1.19861)
+texture = ExtResource("2_k45ex")
+
+[node name="MainMenuTitle" type="Sprite2D" parent="."]
+position = Vector2(979, 217)
+scale = Vector2(2, 2)
+texture = ExtResource("3_ioeq8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 745.0
+offset_top = 315.0
+offset_right = 1198.0
+offset_bottom = 911.0
+
+[node name="Play" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_8oe7h")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_mi7w1")
+text = "Play"
+
+[node name="Options" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_8oe7h")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_u4ei4")
+text = "Options"
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_8oe7h")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cluw7")
+text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
