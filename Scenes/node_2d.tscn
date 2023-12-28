@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhbremyfpt2ig"]
+[gd_scene load_steps=6 format=3 uid="uid://dhbremyfpt2ig"]
 
 [ext_resource type="Texture2D" uid="uid://ca6qkqhvb1sa" path="res://Assets/GtrassBG.jpg" id="1_fb5ao"]
+[ext_resource type="Script" path="res://Scripts/node_2d.gd" id="1_m7q4i"]
 [ext_resource type="PackedScene" uid="uid://db4r6xtfnmees" path="res://Scenes/Objects/tower.tscn" id="2_8533y"]
 [ext_resource type="PackedScene" uid="uid://b8yaa01m7dtw1" path="res://Scenes/Characters/sorcerer.tscn" id="3_2sn2t"]
 [ext_resource type="PackedScene" uid="uid://boyn2rfrxnuh" path="res://Scenes/Characters/goblin.tscn" id="4_00a1a"]
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_m7q4i")
 
 [node name="GrassBg" type="Sprite2D" parent="."]
 position = Vector2(968, 535)
