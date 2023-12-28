@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://boyn2rfrxnuh"]
+[gd_scene load_steps=6 format=3 uid="uid://lr2i5b8ldk54"]
 
-[ext_resource type="Script" path="res://Scripts/Classes/Goblin.gd" id="1_m3jd8"]
-[ext_resource type="Texture2D" uid="uid://1bbvi1pcs3a5" path="res://Assets/My Sprites/LowMeleeUnit.png" id="2_c3c30"]
-[ext_resource type="Script" path="res://Scripts/Components/AttackRange.gd" id="3_nd61b"]
+[ext_resource type="Script" path="res://Scripts/Classes/Infantry.gd" id="1_ubutd"]
+[ext_resource type="Texture2D" uid="uid://1bbvi1pcs3a5" path="res://Assets/My Sprites/LowMeleeUnit.png" id="2_28qhe"]
+[ext_resource type="Script" path="res://Scripts/Components/AttackRange.gd" id="3_7ntuh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xgo0f"]
 radius = 9.0
@@ -11,21 +11,23 @@ height = 34.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_owgjn"]
 radius = 19.0263
 
-[node name="Goblin" type="CharacterBody2D"]
-script = ExtResource("1_m3jd8")
+[node name="Infantry" type="CharacterBody2D"]
+script = ExtResource("1_ubutd")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0, 0.431373, 0, 1)
-texture = ExtResource("2_c3c30")
+modulate = Color(0.521569, 0.521569, 0.521569, 1)
+texture = ExtResource("2_28qhe")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 6)
 shape = SubResource("CapsuleShape2D_xgo0f")
 
 [node name="AttackRange" type="Area2D" parent="."]
-script = ExtResource("3_nd61b")
+script = ExtResource("3_7ntuh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
+visible = false
 position = Vector2(0, 6)
 shape = SubResource("CircleShape2D_owgjn")
 

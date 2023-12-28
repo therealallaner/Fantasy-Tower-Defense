@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://db4r6xtfnmees"]
 
 [ext_resource type="Script" path="res://Scripts/tower.gd" id="1_quld6"]
-[ext_resource type="Texture2D" uid="uid://ck7r0jtlhjbm6" path="res://Assets/My Sprites/Tower.png" id="2_bob5f"]
+[ext_resource type="Texture2D" uid="uid://i6nh13hq22bx" path="res://Assets/My Sprites/LowCastle.png" id="2_lr0to"]
 [ext_resource type="Script" path="res://Scripts/Components/HitboxComp.gd" id="3_gxmqh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lgb3w"]
@@ -14,7 +14,7 @@ size = Vector2(128, 84)
 script = ExtResource("1_quld6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_bob5f")
+texture = ExtResource("2_lr0to")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2.5, 8)

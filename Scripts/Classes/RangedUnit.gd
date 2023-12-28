@@ -2,7 +2,7 @@ extends Unit
 class_name Ranged_Unit
 
 
-@onready var projectile = preload("res://Scenes/Components/SorcSpell.tscn")
+@onready var projectile = preload("res://Scenes/Objects/SorcSpell.tscn")
 
 
 func Ranged_Attack():

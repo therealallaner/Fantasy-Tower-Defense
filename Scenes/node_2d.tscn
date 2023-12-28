@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://dhbremyfpt2ig"]
+[gd_scene load_steps=8 format=3 uid="uid://dhbremyfpt2ig"]
 
 [ext_resource type="Texture2D" uid="uid://ca6qkqhvb1sa" path="res://Assets/GtrassBG.jpg" id="1_fb5ao"]
 [ext_resource type="Script" path="res://Scripts/node_2d.gd" id="1_m7q4i"]
 [ext_resource type="PackedScene" uid="uid://db4r6xtfnmees" path="res://Scenes/Objects/tower.tscn" id="2_8533y"]
 [ext_resource type="PackedScene" uid="uid://b8yaa01m7dtw1" path="res://Scenes/Characters/sorcerer.tscn" id="3_2sn2t"]
 [ext_resource type="PackedScene" uid="uid://boyn2rfrxnuh" path="res://Scenes/Characters/goblin.tscn" id="4_00a1a"]
+[ext_resource type="PackedScene" uid="uid://lr2i5b8ldk54" path="res://Scenes/Characters/infantry.tscn" id="6_wvdnh"]
+[ext_resource type="PackedScene" uid="uid://euprlpbkbsih" path="res://Scenes/Characters/xbowman.tscn" id="7_caeub"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_m7q4i")
@@ -28,3 +30,27 @@ position = Vector2(81, 264)
 
 [node name="Goblin3" parent="." instance=ExtResource("4_00a1a")]
 position = Vector2(143, 27)
+
+[node name="Infantry" parent="." instance=ExtResource("6_wvdnh")]
+position = Vector2(223, 784)
+
+[node name="Infantry2" parent="." instance=ExtResource("6_wvdnh")]
+position = Vector2(206, 996)
+
+[node name="Xbow" parent="." instance=ExtResource("7_caeub")]
+position = Vector2(484, 941)
+
+[node name="Xbow2" parent="." instance=ExtResource("7_caeub")]
+position = Vector2(702, 960)
+
+[node name="Goblin4" parent="." instance=ExtResource("4_00a1a")]
+position = Vector2(1145, 188)
+
+[node name="Infantry3" parent="." instance=ExtResource("6_wvdnh")]
+position = Vector2(846, 182)
+
+[node name="Sorcerer2" parent="." instance=ExtResource("3_2sn2t")]
+position = Vector2(1366, 314)
+
+[node name="Xbow3" parent="." instance=ExtResource("7_caeub")]
+position = Vector2(1355, 580)

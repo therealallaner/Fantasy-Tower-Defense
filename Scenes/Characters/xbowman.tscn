@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://b8yaa01m7dtw1"]
+[gd_scene load_steps=6 format=3 uid="uid://euprlpbkbsih"]
 
-[ext_resource type="Script" path="res://Scripts/Classes/Sorcerer.gd" id="1_6o6ak"]
-[ext_resource type="Texture2D" uid="uid://cs3r8cehshbxd" path="res://Assets/My Sprites/LowRangedUnit.png" id="2_76nyj"]
-[ext_resource type="Script" path="res://Scripts/Components/AttackRange.gd" id="3_874on"]
+[ext_resource type="Script" path="res://Scripts/Classes/xbowman.gd" id="1_5adh0"]
+[ext_resource type="Texture2D" uid="uid://cs3r8cehshbxd" path="res://Assets/My Sprites/LowRangedUnit.png" id="2_5ig6h"]
+[ext_resource type="Script" path="res://Scripts/Components/AttackRange.gd" id="3_p22ys"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w74di"]
 radius = 15.0
@@ -12,24 +12,25 @@ height = 60.0
 radius = 95.0
 height = 264.0
 
-[node name="Sorcerer" type="CharacterBody2D"]
-script = ExtResource("1_6o6ak")
+[node name="Xbow" type="CharacterBody2D"]
+script = ExtResource("1_5adh0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.301961, 0, 0.584314, 1)
-texture = ExtResource("2_76nyj")
+modulate = Color(0.282353, 0.105882, 0, 1)
+texture = ExtResource("2_5ig6h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_w74di")
 
 [node name="AttackRange" type="Area2D" parent="."]
-script = ExtResource("3_874on")
+script = ExtResource("3_p22ys")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_65rf6")
 
 [node name="AttackTimer" type="Timer" parent="AttackRange"]
+wait_time = 1.5
 one_shot = true
 
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
