@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://db4r6xtfnmees"]
+[gd_scene load_steps=6 format=3 uid="uid://db4r6xtfnmees"]
 
 [ext_resource type="Script" path="res://Scripts/tower.gd" id="1_quld6"]
 [ext_resource type="Texture2D" uid="uid://ck7r0jtlhjbm6" path="res://Assets/My Sprites/Tower.png" id="2_bob5f"]
+[ext_resource type="Script" path="res://Scripts/Components/HitboxComp.gd" id="3_gxmqh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lgb3w"]
 size = Vector2(117, 74)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_glhhy"]
+size = Vector2(128, 84)
 
 [node name="Tower" type="StaticBody2D"]
 script = ExtResource("1_quld6")
@@ -15,3 +19,10 @@ texture = ExtResource("2_bob5f")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2.5, 8)
 shape = SubResource("RectangleShape2D_lgb3w")
+
+[node name="HitBox" type="Area2D" parent="."]
+script = ExtResource("3_gxmqh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(3, 8)
+shape = SubResource("RectangleShape2D_glhhy")

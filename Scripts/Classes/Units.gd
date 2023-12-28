@@ -5,7 +5,7 @@ class_name Unit
 var isenemy = true
 var HP = 1
 var attackDMG = 5
-var Speed = 50
+var Speed = 100
 var isattacking = false
 var Target = null
 

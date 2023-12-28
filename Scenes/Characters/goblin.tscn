@@ -1,11 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://boyn2rfrxnuh"]
+[gd_scene load_steps=6 format=3 uid="uid://boyn2rfrxnuh"]
 
 [ext_resource type="Script" path="res://Scripts/Classes/Goblin.gd" id="1_m3jd8"]
 [ext_resource type="Texture2D" uid="uid://3a760m2o0x76" path="res://Assets/My Sprites/LowGoblin.png" id="2_b2hbe"]
+[ext_resource type="Script" path="res://Scripts/Components/AttackRange.gd" id="3_nd61b"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xgo0f"]
 radius = 9.0
 height = 34.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_owgjn"]
+radius = 19.0263
 
 [node name="Goblin" type="CharacterBody2D"]
 script = ExtResource("1_m3jd8")
@@ -16,3 +20,17 @@ texture = ExtResource("2_b2hbe")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 6)
 shape = SubResource("CapsuleShape2D_xgo0f")
+
+[node name="AttackRange" type="Area2D" parent="."]
+script = ExtResource("3_nd61b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
+position = Vector2(0, 6)
+shape = SubResource("CircleShape2D_owgjn")
+
+[node name="AttackTimer" type="Timer" parent="AttackRange"]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
+[connection signal="timeout" from="AttackRange/AttackTimer" to="." method="_on_attack_timer_timeout"]

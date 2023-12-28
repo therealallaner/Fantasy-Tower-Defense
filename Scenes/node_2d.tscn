@@ -1,21 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhbremyfpt2ig"]
+[gd_scene load_steps=4 format=3 uid="uid://dhbremyfpt2ig"]
 
-[ext_resource type="PackedScene" uid="uid://boyn2rfrxnuh" path="res://Scenes/Characters/goblin.tscn" id="1_dqft3"]
 [ext_resource type="Texture2D" uid="uid://ca6qkqhvb1sa" path="res://Assets/GtrassBG.jpg" id="1_fb5ao"]
 [ext_resource type="PackedScene" uid="uid://db4r6xtfnmees" path="res://Scenes/Objects/tower.tscn" id="2_8533y"]
 [ext_resource type="PackedScene" uid="uid://b8yaa01m7dtw1" path="res://Scenes/Characters/sorcerer.tscn" id="3_2sn2t"]
 
 [node name="Node2D" type="Node2D"]
 
-[node name="GtrassBg" type="Sprite2D" parent="."]
+[node name="GrassBg" type="Sprite2D" parent="."]
 position = Vector2(574, 329)
 texture = ExtResource("1_fb5ao")
-
-[node name="Goblin" parent="." instance=ExtResource("1_dqft3")]
-position = Vector2(78, 60)
 
 [node name="TheTower" parent="." instance=ExtResource("2_8533y")]
 position = Vector2(567, 324)
 
 [node name="Sorcerer" parent="." instance=ExtResource("3_2sn2t")]
-position = Vector2(161, 37)
+position = Vector2(111, 124)
