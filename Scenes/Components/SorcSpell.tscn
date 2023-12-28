@@ -1,9 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://ci2u2yr134vu8"]
+[gd_scene load_steps=4 format=3 uid="uid://ci2u2yr134vu8"]
 
 [ext_resource type="Texture2D" uid="uid://7itgfvy4xp3n" path="res://Assets/My Sprites/SorcSpell.png" id="1_my0ft"]
 [ext_resource type="Script" path="res://Scripts/Classes/Projectile.gd" id="2_3i1od"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nrb7d"]
+radius = 326.208
 
 [node name="SorcSpell" type="Sprite2D"]
 scale = Vector2(0.0277778, 0.0263889)
 texture = ExtResource("1_my0ft")
 script = ExtResource("2_3i1od")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_nrb7d")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
