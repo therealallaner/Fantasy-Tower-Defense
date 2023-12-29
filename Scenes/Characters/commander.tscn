@@ -14,8 +14,8 @@ height = 64.0
 radius = 137.768
 
 [node name="Commander" type="CharacterBody2D" groups=["Commander"]]
-collision_layer = 2
-collision_mask = 15
+collision_layer = 0
+collision_mask = 13
 script = ExtResource("1_4r3id")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -32,9 +32,13 @@ position = Vector2(0, 3)
 shape = SubResource("CapsuleShape2D_awnc2")
 
 [node name="AreaofCommand" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaofCommand"]
 shape = SubResource("CircleShape2D_ngnaw")
 
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
+[connection signal="body_entered" from="AreaofCommand" to="." method="_on_areaof_command_body_entered"]
+[connection signal="body_exited" from="AreaofCommand" to="." method="_on_areaof_command_body_exited"]

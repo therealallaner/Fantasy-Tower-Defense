@@ -7,45 +7,75 @@ var HP = 1
 var attackDMG = 5
 var Speed = 100
 var isattacking = false
+var canattack = false
+var patrol = false
+var patrol_location: Vector2
+var isinCommandRange = false
 var Target = null
 var Command = null
 
 func Test():
 	print("Yur mum")
 
-
+func _process(delta):
+	if HP <= 0:
+		queue_free()
 
 func _physics_process(delta):
-	if isenemy:
-		if Target != null and !isattacking:
-			var Targetpos = Target.position
-			var Newpos = (Targetpos - position).normalized()
-			var distance = (Targetpos - position).length()
+	if Target != null and !isattacking:
+		var Targetpos = Target.position
+		var Newpos = (Targetpos - position).normalized()
+		var distance = (Targetpos - position).length()
+		if distance < 50:
+			return
+		velocity = Newpos * Speed
+		var Characterpos = position
+		if Targetpos.x > Characterpos.x:
+			$Sprite2D.flip_h = false
+		else:
+			$Sprite2D.flip_h = true
+			
+		move_and_slide()
+		
+	elif Command != null and !isinCommandRange:
+		var Targetpos = Command.position
+		var Newpos = (Targetpos - position).normalized()
+		var distance = (Targetpos - position).length()
+		velocity = Newpos * Speed
+		var Characterpos = position
+		if Targetpos.x > Characterpos.x:
+			$Sprite2D.flip_h = false
+		else:
+			$Sprite2D.flip_h = true
+	
+		move_and_slide()
+		
+	elif isinCommandRange:
+		if !patrol:
+			patrol_location = Find_Patrol()
+		else:
+			var Newpos = (patrol_location - position).normalized()
+			var distance = (patrol_location - position).length()
 			if distance < 50:
-				return
+				patrol = false
 			velocity = Newpos * Speed
 			var Characterpos = position
-			if Targetpos.x > Characterpos.x:
+			if patrol_location.x > Characterpos.x:
 				$Sprite2D.flip_h = false
 			else:
 				$Sprite2D.flip_h = true
-			
-			move_and_slide()
-	else:
-		if Command != null and !isattacking:
-			var Targetpos = Command.position
-			var Newpos = (Targetpos - position).normalized()
-			var distance = (Targetpos - position).length()
-			if distance < 50:
-				return
-			velocity = Newpos * Speed
-			var Characterpos = position
-			if Targetpos.x > Characterpos.x:
-				$Sprite2D.flip_h = false
-			else:
-				$Sprite2D.flip_h = true
-			
-			move_and_slide()
+	
+		move_and_slide()
+		
+		
+func Find_Patrol():
+	patrol = true
+	var patrol_area = Command.get_node("AreaofCommand/CollisionShape2D").shape.radius
+	var origin = Command.get_node("AreaofCommand/CollisionShape2D").global_position - Vector2(patrol_area, patrol_area)
+	var x = randf_range(origin.x, origin.x + 2 * .95 * patrol_area)
+	var y = randf_range(origin.y, origin.y + 2 * .95 * patrol_area)
+	return Vector2(x,y)
+	
 	
 func Find_Target():
 	if isenemy:

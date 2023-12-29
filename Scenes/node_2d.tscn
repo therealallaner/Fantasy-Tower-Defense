@@ -22,4 +22,10 @@ position = Vector2(967, 530)
 [node name="Game UI" parent="." instance=ExtResource("4_j1k6x")]
 
 [node name="Commander" parent="." instance=ExtResource("5_ugxoq")]
-position = Vector2(590, 571)
+position = Vector2(435, 587)
+
+[node name="Commander2" parent="." instance=ExtResource("5_ugxoq")]
+position = Vector2(1522, 635)
+
+[node name="Commander3" parent="." instance=ExtResource("5_ugxoq")]
+position = Vector2(1011, 247)

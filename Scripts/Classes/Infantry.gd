@@ -10,10 +10,21 @@ func _ready():
 
 
 func _on_attack_range_body_entered(body):
-	if body == Target:
-		Melee_Attack()
+	if canattack:
+		var Tower = get_parent().get_node_or_null("TheTower")
+		if body == Tower:
+			pass
+		elif body.has_method("Selection"):
+			pass
+		elif body.isenemy and Target == null:
+			Target = body
+			Melee_Attack()
 
 
 func _on_attack_timer_timeout():
 	if Target != null:
 		Melee_Attack()
+
+
+func _on_attack_range_body_exited(body):
+	isattacking = false

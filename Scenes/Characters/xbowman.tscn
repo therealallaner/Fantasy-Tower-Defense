@@ -13,6 +13,8 @@ radius = 95.0
 height = 264.0
 
 [node name="Xbow" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 13
 script = ExtResource("1_5adh0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -24,6 +26,8 @@ position = Vector2(0, 9)
 shape = SubResource("CapsuleShape2D_w74di")
 
 [node name="AttackRange" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 15
 script = ExtResource("3_p22ys")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
@@ -36,4 +40,5 @@ wait_time = 1.5
 one_shot = true
 
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
+[connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]
 [connection signal="timeout" from="AttackRange/AttackTimer" to="." method="_on_attack_timer_timeout"]
