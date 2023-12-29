@@ -3,26 +3,21 @@ class_name Commander
 
 
 var isselected = false
-var troop_max = 10
+var max_troop_command = 5
+var current_command = 0
 var mouse_hovering = false
 var Speed = 60
 var Target = null
 var Targetdis: float
-
+var Units = []
 
 func _process(delta):
-	if Input.is_action_just_pressed("Left-Click"):
-		if mouse_hovering:
-			isselected = !isselected
-			Selection()
-		elif isselected:
-			isselected = false
-			Selection()
-
-	if Input.is_action_just_pressed("Right-Click") and isselected:
-		Target = get_global_mouse_position()
-		isselected = false
+	if Input.is_action_just_pressed("Left-Click") and mouse_hovering:
 		Selection()
+
+	if Input.is_action_just_pressed("Right-Click"):
+		if Global.SelectedCommander == self:
+			Target = get_global_mouse_position()
 		
 	if position == Target:
 		Target = null
@@ -45,11 +40,13 @@ func _physics_process(delta):
 
 
 func Selection():
-	if isselected:
-		$Sprite2D.flip_v = true
+	if Global.SelectedCommander != self:
+		Global.SelectedCommander = self
+		get_parent().get_node("Game UI/HumanStore").visible = true
+		get_parent().get_node("Game UI").Check_Troops()
 	else:
-		$Sprite2D.flip_v = false
-
+		Global.SelectedCommander = null
+		get_parent().get_node("Game UI/HumanStore").visible = false
 
 func _on_area_2d_mouse_entered():
 	mouse_hovering = true

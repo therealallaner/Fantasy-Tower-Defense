@@ -8,10 +8,19 @@ extends CanvasLayer
 @onready var Xbow_Unit = preload("res://Scenes/Characters/xbowman.tscn")
 
 func _ready():
+	$HumanStore.visible = false
 	Inf_L.visible = false
 	Xbow_L.visible = false
 
 
+func Check_Troops():
+	var max = Global.SelectedCommander.max_troop_command
+	var curr = Global.SelectedCommander.current_command
+	var space = max - curr
+	if space < Global.InfantryHousing:
+		Inf_B.disabled = true
+	else:
+		Inf_B.disabled = false
 
 func _on_infantry_mouse_entered():
 	Inf_L.visible = true
@@ -32,6 +41,8 @@ func _on_infantry_pressed():
 		var targetpos = get_parent().get_node("TheTower/UnitSpawner").global_position
 		instance.position = targetpos
 		get_parent().add_child(instance)
+		Global.SelectedCommander.current_command += Global.InfantryHousing
+		Check_Troops()
 
 
 func _on_pause_pressed():
