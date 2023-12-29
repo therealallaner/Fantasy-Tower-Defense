@@ -1,0 +1,77 @@
+[gd_scene load_steps=7 format=3 uid="uid://mltrhj62rtfc"]
+
+[ext_resource type="Script" path="res://Scripts/Game UI.gd" id="1_pvasg"]
+[ext_resource type="Theme" uid="uid://cp2e2s82wiif8" path="res://Assets/UI/Themes/Augusta.tres" id="2_mttdy"]
+[ext_resource type="Texture2D" uid="uid://1bbvi1pcs3a5" path="res://Assets/My Sprites/LowMeleeUnit.png" id="3_2ul3f"]
+[ext_resource type="Texture2D" uid="uid://cs3r8cehshbxd" path="res://Assets/My Sprites/LowRangedUnit.png" id="4_d0j5u"]
+[ext_resource type="Theme" uid="uid://xxphpmqd0t6l" path="res://Assets/UI/Themes/GoudyMedieval.tres" id="5_g1t6w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qcrhb"]
+
+[node name="Game UI" type="CanvasLayer"]
+script = ExtResource("1_pvasg")
+
+[node name="HumanStore" type="HBoxContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -71.5
+offset_top = -130.0
+offset_right = 71.5
+offset_bottom = -31.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Infantry" type="VBoxContainer" parent="HumanStore"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="HumanStore/Infantry"]
+visible = false
+layout_mode = 2
+theme = ExtResource("2_mttdy")
+theme_override_font_sizes/font_size = 25
+text = "Infantry"
+
+[node name="Infantry" type="TextureButton" parent="HumanStore/Infantry"]
+layout_mode = 2
+theme = ExtResource("2_mttdy")
+texture_normal = ExtResource("3_2ul3f")
+
+[node name="Xbowman" type="VBoxContainer" parent="HumanStore"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label2" type="Label" parent="HumanStore/Xbowman"]
+visible = false
+layout_mode = 2
+theme = ExtResource("2_mttdy")
+theme_override_font_sizes/font_size = 25
+text = "X-bow"
+
+[node name="Xbow" type="TextureButton" parent="HumanStore/Xbowman"]
+layout_mode = 2
+texture_normal = ExtResource("4_d0j5u")
+stretch_mode = 1
+
+[node name="Pause" type="Button" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -53.0
+offset_top = 25.0
+offset_right = -25.0
+offset_bottom = 80.0
+grow_horizontal = 0
+theme = ExtResource("5_g1t6w")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_qcrhb")
+text = "||"
+
+[connection signal="mouse_entered" from="HumanStore/Infantry/Infantry" to="." method="_on_infantry_mouse_entered"]
+[connection signal="mouse_exited" from="HumanStore/Infantry/Infantry" to="." method="_on_infantry_mouse_exited"]
+[connection signal="pressed" from="HumanStore/Infantry/Infantry" to="." method="_on_infantry_pressed"]
+[connection signal="mouse_entered" from="HumanStore/Xbowman/Xbow" to="." method="_on_xbow_mouse_entered"]
+[connection signal="mouse_exited" from="HumanStore/Xbowman/Xbow" to="." method="_on_xbow_mouse_exited"]
+[connection signal="pressed" from="Pause" to="." method="_on_pause_pressed"]
