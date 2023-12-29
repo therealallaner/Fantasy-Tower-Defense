@@ -22,10 +22,19 @@ func Check_Troops():
 	var space = max - curr
 	MaxSpace.text = "Max Troop Space: " + str(max)
 	CurrSpace.text = "Current Troops: " + str(curr)
+	Button_Management(space)
+		
+func Button_Management(space):
 	if space < Global.InfantryHousing:
 		Inf_B.disabled = true
 	else:
 		Inf_B.disabled = false
+		
+	if space < Global.XbowHousing:
+		Xbow_B.disabled = true
+	else:
+		Xbow_B.disabled = false
+	
 
 func _on_infantry_mouse_entered():
 	Inf_L.visible = true
@@ -56,7 +65,7 @@ func _on_xbow_pressed():
 		var targetpos = get_parent().get_node("TheTower/UnitSpawner").global_position
 		instance.position = targetpos
 		get_parent().add_child(instance)
-		Global.SelectedCommander.current_command += Global.InfantryHousing
+		Global.SelectedCommander.current_command += Global.XbowHousing
 		Global.SelectedCommander.Units.append(instance)
 		Check_Troops()
 

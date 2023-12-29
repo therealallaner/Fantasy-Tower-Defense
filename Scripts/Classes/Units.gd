@@ -50,7 +50,7 @@ func _physics_process(delta):
 	
 		move_and_slide()
 		
-	elif isinCommandRange:
+	elif isinCommandRange and !isattacking:
 		if !patrol:
 			patrol_location = Find_Patrol()
 		else:
