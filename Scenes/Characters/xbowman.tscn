@@ -6,7 +6,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w74di"]
 radius = 15.0
-height = 60.0
+height = 38.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_65rf6"]
 radius = 95.0
@@ -20,12 +20,14 @@ modulate = Color(0.282353, 0.105882, 0, 1)
 texture = ExtResource("2_5ig6h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 9)
 shape = SubResource("CapsuleShape2D_w74di")
 
 [node name="AttackRange" type="Area2D" parent="."]
 script = ExtResource("3_p22ys")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
+visible = false
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_65rf6")
 

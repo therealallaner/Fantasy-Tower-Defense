@@ -5,24 +5,29 @@
 [ext_resource type="Script" path="res://Scripts/Components/HitboxComp.gd" id="3_gxmqh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lgb3w"]
-size = Vector2(117, 74)
+size = Vector2(120, 46)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_glhhy"]
 size = Vector2(128, 84)
 
 [node name="Tower" type="StaticBody2D"]
+collision_mask = 15
 script = ExtResource("1_quld6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_lr0to")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2.5, 8)
+position = Vector2(-1, 27)
 shape = SubResource("RectangleShape2D_lgb3w")
 
 [node name="HitBox" type="Area2D" parent="."]
 script = ExtResource("3_gxmqh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+visible = false
 position = Vector2(3, 8)
 shape = SubResource("RectangleShape2D_glhhy")
+
+[node name="UnitSpawner" type="Marker2D" parent="." groups=["TowerSpawner"]]
+position = Vector2(1, 60)

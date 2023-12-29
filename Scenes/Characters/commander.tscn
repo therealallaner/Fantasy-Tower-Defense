@@ -1,17 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://bl3chbfd40ncq"]
+[gd_scene load_steps=5 format=3 uid="uid://bl3chbfd40ncq"]
 
 [ext_resource type="Script" path="res://Scripts/Classes/commander.gd" id="1_4r3id"]
 [ext_resource type="Texture2D" uid="uid://bv58vt22wws37" path="res://Assets/My Sprites/LowCommander.png" id="1_yloek"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xt5r4"]
+size = Vector2(23, 16)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_awnc2"]
 radius = 17.0
 height = 64.0
 
 [node name="Commander" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 15
 script = ExtResource("1_4r3id")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_yloek")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 19)
+shape = SubResource("RectangleShape2D_xt5r4")
 
 [node name="Area2D" type="Area2D" parent="."]
 

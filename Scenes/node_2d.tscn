@@ -7,9 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://bl3chbfd40ncq" path="res://Scenes/Characters/commander.tscn" id="5_ugxoq"]
 
 [node name="Node2D" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_m7q4i")
 
 [node name="GrassBg" type="Sprite2D" parent="."]
+z_index = -4
 position = Vector2(968, 535)
 scale = Vector2(1.56016, 1.55833)
 texture = ExtResource("1_fb5ao")

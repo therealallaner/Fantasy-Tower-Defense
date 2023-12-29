@@ -29,6 +29,8 @@ func _on_xbow_mouse_exited():
 
 func _on_infantry_pressed():
 		var instance = Infantry_Unit.instantiate()
+		var targetpos = get_parent().get_node("TheTower/UnitSpawner").global_position
+		instance.position = targetpos
 		get_parent().add_child(instance)
 
 

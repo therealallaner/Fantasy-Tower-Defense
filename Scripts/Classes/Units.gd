@@ -18,6 +18,9 @@ func _physics_process(delta):
 	if Target != null and !isattacking:
 		var Targetpos = Target.position
 		var Newpos = (Targetpos - position).normalized()
+		var distance = (Targetpos - position).length()
+		if distance < 50:
+			return
 		velocity = Newpos * Speed
 		var Characterpos = position
 		if Targetpos.x > Characterpos.x:
@@ -32,5 +35,5 @@ func Find_Target():
 		var Tower = get_parent().get_node_or_null("TheTower")
 		Target = Tower
 	else:
-		pass
-	
+		var Commander = get_parent().get_node("Commander")
+		Target = Commander

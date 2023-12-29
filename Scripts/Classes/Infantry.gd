@@ -2,6 +2,7 @@ extends Melee_Unit
 class_name Infantry
 
 func _ready():
+	isenemy = false
 	attackDMG = 5
 	HP = 15
 	Find_Target()

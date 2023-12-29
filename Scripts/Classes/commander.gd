@@ -31,9 +31,7 @@ func _physics_process(delta):
 	if Target:
 		var Newpos = (Target - position).normalized()
 		var distance = (Target - position).length()
-		print(distance)
 		if distance < 2:
-			print(distance)
 			return
 		velocity = Newpos * Speed
 		var Characterpos = position
