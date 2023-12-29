@@ -1,5 +1,9 @@
 extends CanvasLayer
 
+
+@onready var WaveButton = $GameStats/WaveController
+@onready var WaveCount = $GameStats/HBox/WaveCount
+@onready var Money = $GameStats/HBox/Amount
 @onready var Inf_L = $Stores/HumanStore/Infantry/Label
 @onready var Inf_B = $Stores/HumanStore/Infantry/Infantry
 @onready var Xbow_L = $Stores/HumanStore/Xbowman/Label2
@@ -10,11 +14,15 @@ extends CanvasLayer
 @onready var CurrSpace = $CommanderStats/CurrSpace
 
 func _ready():
+	WaveButton.text = "Start"
+	WaveCount.text = "Wave: " + str(Global.CurrWave)
 	$Stores/HumanStore.visible = false
 	$CommanderStats.visible = false
 	Inf_L.visible = false
 	Xbow_L.visible = false
 
+func _process(delta):
+	Money.text = "$" + str(Global.PlayerMoney)
 
 func Check_Troops():
 	var max = Global.SelectedCommander.max_troop_command
@@ -51,22 +59,26 @@ func _on_xbow_mouse_exited():
 
 
 func _on_infantry_pressed():
+	if Global.PlayerMoney >= Global.InfantryCost:
 		var instance = Infantry_Unit.instantiate()
 		var targetpos = get_parent().get_node("TheTower/UnitSpawner").global_position
 		instance.position = targetpos
 		get_parent().add_child(instance)
 		Global.SelectedCommander.current_command += Global.InfantryHousing
 		Global.SelectedCommander.Units.append(instance)
+		Global.PlayerMoney -= Global.InfantryCost
 		Check_Troops()
 
 
 func _on_xbow_pressed():
+	if Global.PlayerMoney >= Global.XbowCost:
 		var instance = Xbow_Unit.instantiate()
 		var targetpos = get_parent().get_node("TheTower/UnitSpawner").global_position
 		instance.position = targetpos
 		get_parent().add_child(instance)
 		Global.SelectedCommander.current_command += Global.XbowHousing
 		Global.SelectedCommander.Units.append(instance)
+		Global.PlayerMoney -= Global.XbowCost
 		Check_Troops()
 
 

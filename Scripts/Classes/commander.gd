@@ -67,4 +67,5 @@ func _on_areaof_command_body_entered(body):
 func _on_areaof_command_body_exited(body):
 	if body in Units:
 		body.isinCommandRange = false
+		body.patrol = false
 		body.canattack = false

@@ -1,7 +1,10 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cp2e2s82wiif8"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cp2e2s82wiif8"]
 
 [ext_resource type="FontFile" uid="uid://dh7mxkef1nqvf" path="res://Assets/Fonts/augusta/Augusta.ttf" id="1_5jc7f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_etwhh"]
 
 [resource]
 default_font = ExtResource("1_5jc7f")
 default_font_size = 175
+Button/styles/normal = SubResource("StyleBoxEmpty_etwhh")

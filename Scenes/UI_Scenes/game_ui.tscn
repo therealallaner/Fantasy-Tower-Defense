@@ -13,6 +13,41 @@
 [node name="Game UI" type="CanvasLayer"]
 script = ExtResource("1_pvasg")
 
+[node name="GameStats" type="VBoxContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -159.0
+offset_top = 25.0
+offset_right = 159.0
+offset_bottom = 172.0
+grow_horizontal = 2
+
+[node name="WaveController" type="Button" parent="GameStats"]
+layout_mode = 2
+theme = ExtResource("2_mttdy")
+theme_override_font_sizes/font_size = 75
+text = "Next Wave"
+
+[node name="HBox" type="HBoxContainer" parent="GameStats"]
+layout_mode = 2
+
+[node name="WaveCount" type="Label" parent="GameStats/HBox"]
+layout_mode = 2
+theme = ExtResource("2_mttdy")
+theme_override_font_sizes/font_size = 50
+text = "Wave 1"
+
+[node name="Sppacer" type="Control" parent="GameStats/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Amount" type="Label" parent="GameStats/HBox"]
+layout_mode = 2
+theme = ExtResource("2_mttdy")
+theme_override_font_sizes/font_size = 50
+text = "$250"
+
 [node name="CommanderStats" type="VBoxContainer" parent="."]
 anchors_preset = 2
 anchor_top = 1.0
@@ -68,6 +103,7 @@ theme_override_font_sizes/font_size = 25
 text = "Infantry"
 
 [node name="Infantry" type="TextureButton" parent="Stores/HumanStore/Infantry"]
+self_modulate = Color(0.411765, 0.411765, 0.411765, 1)
 layout_mode = 2
 theme = ExtResource("2_mttdy")
 texture_normal = ExtResource("3_2ul3f")
@@ -84,6 +120,7 @@ theme_override_font_sizes/font_size = 25
 text = "X-bow"
 
 [node name="Xbow" type="TextureButton" parent="Stores/HumanStore/Xbowman"]
+self_modulate = Color(0.313726, 0.152941, 0, 1)
 layout_mode = 2
 texture_normal = ExtResource("4_d0j5u")
 stretch_mode = 1

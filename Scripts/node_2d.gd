@@ -4,6 +4,7 @@ extends Node2D
 @onready var Commander = preload("res://Scenes/Characters/commander.tscn")
 
 func _ready():
+	Global.PlayerMoney = 250
 	var instance = Commander.instantiate()
 	var targetpos = $TheTower/UnitSpawner.global_position
 	instance.position = targetpos
