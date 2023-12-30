@@ -19,6 +19,10 @@ func Test():
 
 func _process(delta):
 	if HP <= 0:
+		HP = 0
+		if isenemy:
+			var EnemyList = get_parent().get_node("SpawnController").CurrentEnemies
+			EnemyList.remove_at(EnemyList.find(self))
 		queue_free()
 
 func _physics_process(delta):

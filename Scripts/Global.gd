@@ -9,3 +9,5 @@ var XbowHousing = 1.5
 var XbowCost = 75
 var CaptainHousing = -2
 var CaptainCost = 150
+
+var WaveisActive = false

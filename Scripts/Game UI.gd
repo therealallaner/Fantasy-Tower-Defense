@@ -23,6 +23,12 @@ func _ready():
 
 func _process(delta):
 	Money.text = "$" + str(Global.PlayerMoney)
+	if Global.WaveisActive:
+		WaveButton.text = "Yur mum"
+		WaveButton.disabled = true
+	else:
+		WaveButton.text = "Start"
+		WaveButton.disabled = false
 
 func Check_Troops():
 	var max = Global.SelectedCommander.max_troop_command
