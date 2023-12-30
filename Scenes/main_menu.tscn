@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://dr813yy1g2r72"]
+[gd_scene load_steps=8 format=3 uid="uid://bwuctf6vixewa"]
 
 [ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_dcpqo"]
-[ext_resource type="Texture2D" uid="uid://dmroa0bn4whdh" path="res://Assets/UI/TestBG (1).jpg" id="1_mxwqa"]
 [ext_resource type="Texture2D" uid="uid://bsk4ie7qrdyor" path="res://Assets/UI/MainMenuMenuBG.png" id="2_k45ex"]
 [ext_resource type="Texture2D" uid="uid://0dp8wdbyve4j" path="res://Assets/UI/MainMenuTitle.png" id="3_ioeq8"]
 [ext_resource type="Theme" uid="uid://cp2e2s82wiif8" path="res://Assets/UI/Themes/Augusta.tres" id="5_s4h3j"]
@@ -12,31 +11,40 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cluw7"]
 
-[node name="MainMenu" type="Node2D"]
+[node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_dcpqo")
 
-[node name="TestBg(1)" type="Sprite2D" parent="."]
-position = Vector2(960, 538)
-scale = Vector2(1.52, 1.52)
-texture = ExtResource("1_mxwqa")
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="MainMenuMenuBg" type="Sprite2D" parent="."]
-position = Vector2(975, 588)
+[node name="MainMenuMenuBg" type="Sprite2D" parent="Control"]
 scale = Vector2(1, 1.19861)
 texture = ExtResource("2_k45ex")
 
-[node name="MainMenuTitle" type="Sprite2D" parent="."]
-position = Vector2(979, 217)
+[node name="MainMenuTitle" type="Sprite2D" parent="Control"]
+position = Vector2(0, -350)
 scale = Vector2(2, 2)
 texture = ExtResource("3_ioeq8")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_left = 694.0
-offset_top = 317.0
-offset_right = 1267.0
-offset_bottom = 910.0
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = -280.0
+offset_top = -250.0
+offset_right = 293.0
+offset_bottom = 343.0
 
-[node name="Play" type="Button" parent="VBoxContainer"]
+[node name="Play" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("5_s4h3j")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -44,19 +52,19 @@ theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_mi7w1")
 text = "Play"
 
-[node name="Options" type="Button" parent="VBoxContainer"]
+[node name="Options" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("5_s4h3j")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_u4ei4")
 text = "Options"
 
-[node name="Quit" type="Button" parent="VBoxContainer"]
+[node name="Quit" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("5_s4h3j")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_cluw7")
 text = "Quit"
 
-[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

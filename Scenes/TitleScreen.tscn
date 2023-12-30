@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://dr813yy1g2r72"]
+
+[ext_resource type="Script" path="res://Scripts/TitleScreen.gd" id="1_pco4u"]
+[ext_resource type="Texture2D" uid="uid://dmroa0bn4whdh" path="res://Assets/UI/TestBG (1).jpg" id="2_hxkte"]
+[ext_resource type="PackedScene" uid="uid://bwuctf6vixewa" path="res://Scenes/main_menu.tscn" id="3_b0avh"]
+[ext_resource type="PackedScene" uid="uid://builrbf3uu46i" path="res://Scenes/army_select.tscn" id="3_eqo6t"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_pco4u")
+
+[node name="TestBg(1)" type="Sprite2D" parent="."]
+position = Vector2(960, 538)
+scale = Vector2(1.52, 1.52)
+texture = ExtResource("2_hxkte")
+
+[node name="MainMenu" parent="." instance=ExtResource("3_b0avh")]
+
+[node name="ArmySelect" parent="." instance=ExtResource("3_eqo6t")]

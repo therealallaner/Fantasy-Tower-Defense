@@ -83,9 +83,14 @@ func _on_xbow_pressed():
 
 
 func _on_pause_pressed():
-	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+	get_tree().change_scene_to_file("res://Scenes/TitleScreen.tscn")
 
 
 func _on_quit_pressed():
 	get_tree().quit()
 
+
+
+func _on_wave_controller_pressed():
+	get_parent().get_node("SpawnController").GobbySpawn()
+	get_parent().get_node("SpawnController").SorcSpawn()

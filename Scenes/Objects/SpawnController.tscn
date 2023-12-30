@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqs4a86blc0tl"]
+
+[ext_resource type="Script" path="res://Scripts/Spawner.gd" id="1_0qpmo"]
+
+[node name="SpawnController" type="Node2D"]
+script = ExtResource("1_0qpmo")
+
+[node name="GoblinSpacer" type="Timer" parent="."]
+one_shot = true
+
+[node name="SorcSpacer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="GoblinSpacer" to="." method="_on_goblin_spacer_timeout"]
+[connection signal="timeout" from="SorcSpacer" to="." method="_on_sorc_spacer_timeout"]

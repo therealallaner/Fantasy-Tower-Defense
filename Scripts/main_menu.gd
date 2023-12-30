@@ -1,9 +1,10 @@
-extends Node2D
+extends CanvasLayer
 
 
 
 func _on_play_pressed():
-	get_tree().change_scene_to_file("res://Scenes/node_2d.tscn")
+	self.visible = false
+	get_parent().get_node("ArmySelect").visible = true
 
 func _on_quit_pressed():
 	get_tree().quit()
