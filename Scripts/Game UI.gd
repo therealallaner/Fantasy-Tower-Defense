@@ -4,9 +4,7 @@ extends CanvasLayer
 @onready var WaveButton = $GameStats/WaveController
 @onready var WaveCount = $GameStats/HBox/WaveCount
 @onready var Money = $GameStats/HBox/Amount
-@onready var Inf_L = $Stores/HumanStore/Infantry/Label
 @onready var Inf_B = $Stores/HumanStore/Infantry/Infantry
-@onready var Xbow_L = $Stores/HumanStore/Xbowman/Label2
 @onready var Xbow_B = $Stores/HumanStore/Xbowman/Xbow
 @onready var Commander = preload("res://Scenes/Characters/commander.tscn")
 @onready var Infantry_Unit = preload("res://Scenes/Characters/infantry.tscn")
@@ -21,8 +19,6 @@ func _ready():
 	WaveCount.text = "Wave: " + str(Global.CurrWave)
 	$Stores/HumanStore.visible = false
 	$CommanderStats.visible = false
-	Inf_L.visible = false
-	Xbow_L.visible = false
 
 func _process(delta):
 	Money.text = "$" + str(Global.PlayerMoney)
@@ -76,19 +72,6 @@ func Add_Commander():
 		var targetpos = get_parent().get_node("TheTower/UnitSpawner").global_position
 		instance.position = targetpos
 		get_parent().add_child(instance)
-
-func _on_infantry_mouse_entered():
-	Inf_L.visible = true
-
-func _on_infantry_mouse_exited():
-	Inf_L.visible = false
-
-
-func _on_xbow_mouse_entered():
-	Xbow_L.visible = true
-
-func _on_xbow_mouse_exited():
-	Xbow_L.visible = false
 
 
 func _on_infantry_pressed():

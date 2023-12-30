@@ -108,6 +108,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+theme = ExtResource("2_mttdy")
 
 [node name="HumanStore" type="HBoxContainer" parent="Stores"]
 layout_mode = 1
@@ -127,33 +128,24 @@ grow_vertical = 0
 layout_mode = 2
 alignment = 2
 
-[node name="Label" type="Label" parent="Stores/HumanStore/Infantry"]
-visible = false
-layout_mode = 2
-theme = ExtResource("2_mttdy")
-theme_override_font_sizes/font_size = 25
-text = "Infantry"
-
 [node name="Infantry" type="TextureButton" parent="Stores/HumanStore/Infantry"]
 self_modulate = Color(0.411765, 0.411765, 0.411765, 1)
 layout_mode = 2
-theme = ExtResource("2_mttdy")
+tooltip_text = "Swordsman
+Cost: 50
+Housing Space: 1"
 texture_normal = ExtResource("3_2ul3f")
 
 [node name="Xbowman" type="VBoxContainer" parent="Stores/HumanStore"]
 layout_mode = 2
 alignment = 2
 
-[node name="Label2" type="Label" parent="Stores/HumanStore/Xbowman"]
-visible = false
-layout_mode = 2
-theme = ExtResource("2_mttdy")
-theme_override_font_sizes/font_size = 25
-text = "X-bow"
-
 [node name="Xbow" type="TextureButton" parent="Stores/HumanStore/Xbowman"]
 self_modulate = Color(0.313726, 0.152941, 0, 1)
 layout_mode = 2
+tooltip_text = "X-Bow
+Cost: 75
+Housing Space: 1.5"
 texture_normal = ExtResource("4_d0j5u")
 stretch_mode = 1
 
