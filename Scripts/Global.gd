@@ -11,3 +11,4 @@ var CaptainHousing = -2
 var CaptainCost = 150
 
 var WaveisActive = false
+var WaveReward = false

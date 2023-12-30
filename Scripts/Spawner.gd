@@ -7,16 +7,18 @@ extends Node2D
 @onready var gobbyspacer = $GoblinSpacer
 @onready var sorcspacer = $SorcSpacer
 
-var CurrentEnemies = []
+@onready var node = get_parent().get_node_or_null(WaveNode)
 
+var WaveNode = "Wave 1"
+var CurrentEnemies = []
 var gobbycount = 5
-var sorccount = 0
+var sorccount = -2
 var g_spacer = false
 var s_spacer = false
 var spawners = []
 
 func _ready():
-	for s in get_parent().get_node("Wave 1").get_children():
+	for s in get_parent().get_node(WaveNode).get_children():
 		spawners.append(s.global_position)
 
 func _process(delta):
@@ -24,6 +26,18 @@ func _process(delta):
 		Global.WaveisActive = true
 	else:
 		Global.WaveisActive = false
+		
+
+
+func Set_Spawns():
+	node = get_parent().get_node_or_null(WaveNode)
+	if node:
+		for s in get_parent().get_node(WaveNode).get_children():
+			spawners.append(s.global_position)
+	GobbySpawn()
+	SorcSpawn()
+	gobbycount += 1
+	sorccount += 1
 
 func GobbySpawn():
 	for i in range(gobbycount):
@@ -40,18 +54,19 @@ func GobbySpawn():
 			await gobbyspacer.timeout
 			
 func SorcSpawn():
-	for i in range(sorccount):
-		var randomIndex = randi() % spawners.size()
-		var s = spawners[randomIndex]
-		var instance = Sorc.instantiate()
-		var targetpos = s
-		instance.position = targetpos
-		get_parent().add_child(instance)
-		CurrentEnemies.append(instance)
-		sorcspacer.start()
-		s_spacer = true
-		while s_spacer:
-			await sorcspacer.timeout
+	if sorccount > 0:
+		for i in range(sorccount):
+			var randomIndex = randi() % spawners.size()
+			var s = spawners[randomIndex]
+			var instance = Sorc.instantiate()
+			var targetpos = s
+			instance.position = targetpos
+			get_parent().add_child(instance)
+			CurrentEnemies.append(instance)
+			sorcspacer.start()
+			s_spacer = true
+			while s_spacer:
+				await sorcspacer.timeout
 
 
 

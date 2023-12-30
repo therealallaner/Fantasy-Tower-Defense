@@ -1,12 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://b8yaa01m7dtw1"]
+[gd_scene load_steps=7 format=3 uid="uid://b8yaa01m7dtw1"]
 
 [ext_resource type="Script" path="res://Scripts/Classes/Sorcerer.gd" id="1_6o6ak"]
 [ext_resource type="Texture2D" uid="uid://cs3r8cehshbxd" path="res://Assets/My Sprites/LowRangedUnit.png" id="2_76nyj"]
+[ext_resource type="PackedScene" uid="uid://ci2u2yr134vu8" path="res://Scenes/Objects/SorcSpell.tscn" id="2_ec4il"]
 [ext_resource type="Script" path="res://Scripts/Components/AttackRange.gd" id="3_874on"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w74di"]
 radius = 15.0
-height = 38.0
+height = 54.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_65rf6"]
 radius = 95.0
@@ -14,15 +15,16 @@ height = 264.0
 
 [node name="Sorcerer" type="CharacterBody2D"]
 collision_layer = 4
-collision_mask = 15
+collision_mask = 3
 script = ExtResource("1_6o6ak")
+projectile = ExtResource("2_ec4il")
+projectile_speed = 250
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.301961, 0, 0.584314, 1)
 texture = ExtResource("2_76nyj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 10)
 shape = SubResource("CapsuleShape2D_w74di")
 
 [node name="AttackRange" type="Area2D" parent="."]

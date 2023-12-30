@@ -13,6 +13,38 @@
 [node name="Game UI" type="CanvasLayer"]
 script = ExtResource("1_pvasg")
 
+[node name="WaveRewards" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -376.0
+offset_top = -198.5
+offset_right = 376.0
+offset_bottom = 198.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_mttdy")
+
+[node name="MarginContainer" type="MarginContainer" parent="WaveRewards"]
+layout_mode = 2
+theme_override_constants/margin_left = 250
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 250
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WaveRewards/MarginContainer"]
+layout_mode = 2
+
+[node name="test 1" type="Label" parent="WaveRewards/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Nice Wave!!"
+
+[node name="test 2" type="Button" parent="WaveRewards/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "OK"
+
 [node name="GameStats" type="VBoxContainer" parent="."]
 anchors_preset = 5
 anchor_left = 0.5
@@ -172,6 +204,10 @@ text = "X"
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="pressed" from="WaveRewards/MarginContainer/VBoxContainer/test 2" to="." method="_on_test_2_pressed"]
 [connection signal="pressed" from="GameStats/WaveController" to="." method="_on_wave_controller_pressed"]
 [connection signal="mouse_entered" from="Stores/HumanStore/Infantry/Infantry" to="." method="_on_infantry_mouse_entered"]
 [connection signal="mouse_exited" from="Stores/HumanStore/Infantry/Infantry" to="." method="_on_infantry_mouse_exited"]
@@ -181,3 +217,4 @@ size_flags_horizontal = 3
 [connection signal="pressed" from="Stores/HumanStore/Xbowman/Xbow" to="." method="_on_xbow_pressed"]
 [connection signal="pressed" from="MenuButtons/Pause" to="." method="_on_pause_pressed"]
 [connection signal="pressed" from="MenuButtons/Quit" to="." method="_on_quit_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

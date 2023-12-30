@@ -2,10 +2,8 @@ extends Ranged_Unit
 class_name Xbow
 
 
-
 func _ready():
 	isenemy = false
-	projectile = preload("res://Scenes/Objects/xbow_bolt.tscn")
 	Speed = 100
 	attackDMG = 6
 	HP = 12

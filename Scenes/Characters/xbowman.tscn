@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://euprlpbkbsih"]
+[gd_scene load_steps=7 format=3 uid="uid://euprlpbkbsih"]
 
 [ext_resource type="Script" path="res://Scripts/Classes/xbowman.gd" id="1_5adh0"]
 [ext_resource type="Texture2D" uid="uid://cs3r8cehshbxd" path="res://Assets/My Sprites/LowRangedUnit.png" id="2_5ig6h"]
+[ext_resource type="PackedScene" uid="uid://dc8iywyfffmen" path="res://Scenes/Objects/xbow_bolt.tscn" id="2_hfh1u"]
 [ext_resource type="Script" path="res://Scripts/Components/AttackRange.gd" id="3_p22ys"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w74di"]
@@ -16,6 +17,8 @@ height = 264.0
 collision_layer = 2
 collision_mask = 13
 script = ExtResource("1_5adh0")
+projectile = ExtResource("2_hfh1u")
+projectile_speed = 350
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.282353, 0.105882, 0, 1)

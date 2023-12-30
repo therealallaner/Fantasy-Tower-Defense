@@ -2,7 +2,9 @@ extends Unit
 class_name Ranged_Unit
 
 
-@onready var projectile = preload("res://Scenes/Objects/SorcSpell.tscn")
+#@onready var projectile = preload("res://Scenes/Objects/SorcSpell.tscn")
+@export var projectile: PackedScene
+@export var projectile_speed: int
 
 
 func Ranged_Attack():
@@ -14,6 +16,7 @@ func Ranged_Attack():
 	var instancerotation = instancedir.angle()
 	instance.rotation = instancerotation
 	instance.Target = Target
+	instance.Speed = projectile_speed
 	instance.attackDMG = attackDMG
 	$AttackRange/AttackTimer.start()
 

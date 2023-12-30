@@ -6,7 +6,7 @@ var isselected = false
 var max_troop_command = 7
 var current_command = 0
 var mouse_hovering = false
-var Speed = 60
+var Speed = 95
 var Target = null
 var Targetdis: float
 var Units = []

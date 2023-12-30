@@ -22,6 +22,8 @@ position = Vector2(967, 530)
 
 [node name="Game UI" parent="." instance=ExtResource("4_j1k6x")]
 
+[node name="SpawnController" parent="." instance=ExtResource("6_00qip")]
+
 [node name="Wave 1" type="Node2D" parent="."]
 
 [node name="Spawner" parent="Wave 1" instance=ExtResource("5_bipg0")]
@@ -30,4 +32,26 @@ position = Vector2(-142, 862)
 [node name="Spawner2" parent="Wave 1" instance=ExtResource("5_bipg0")]
 position = Vector2(216, 1168)
 
-[node name="SpawnController" parent="." instance=ExtResource("6_00qip")]
+[node name="Wave 3" type="Node2D" parent="."]
+
+[node name="Spawner" parent="Wave 3" instance=ExtResource("5_bipg0")]
+position = Vector2(-97, 555)
+
+[node name="Spawner3" parent="Wave 3" instance=ExtResource("5_bipg0")]
+position = Vector2(-113, 228)
+
+[node name="Wave 5" type="Node2D" parent="."]
+
+[node name="Spawner" parent="Wave 5" instance=ExtResource("5_bipg0")]
+position = Vector2(2049, 986)
+
+[node name="Spawner3" parent="Wave 5" instance=ExtResource("5_bipg0")]
+position = Vector2(1591, 1191)
+
+[node name="Wave 7" type="Node2D" parent="."]
+
+[node name="Spawner" parent="Wave 7" instance=ExtResource("5_bipg0")]
+position = Vector2(-106, 705)
+
+[node name="Spawner3" parent="Wave 7" instance=ExtResource("5_bipg0")]
+position = Vector2(-97, 1099)
