@@ -11,8 +11,12 @@
 y_sort_enabled = true
 script = ExtResource("1_m7q4i")
 
-[node name="GrassBg" type="Sprite2D" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="GrassBg" type="Sprite2D" parent="CanvasLayer"]
 self_modulate = Color(0.737255, 0.737255, 0.737255, 1)
+show_behind_parent = true
 z_index = -4
 position = Vector2(972, 534)
 scale = Vector2(1.6, 1.6)
