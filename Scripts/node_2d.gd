@@ -11,6 +11,10 @@ func _ready():
 	add_child(instance)
 
 func _process(delta):
+	
+	if Input.is_action_just_pressed("Pause"):
+		$"Game UI".Pause()
+	
 	if $TheTower.HP <= 0:
 		Global.CurrWave = 0
 		get_tree().change_scene_to_file("res://Scenes/TitleScreen.tscn")

@@ -66,5 +66,44 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_cluw7")
 text = "Quit"
 
+[node name="OptionsLabel" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -874.0
+offset_top = -288.5
+offset_right = 874.0
+offset_bottom = 288.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_s4h3j")
+
+[node name="MarginContainer" type="MarginContainer" parent="OptionsLabel"]
+layout_mode = 2
+theme_override_constants/margin_left = 350
+theme_override_constants/margin_top = 75
+theme_override_constants/margin_right = 350
+theme_override_constants/margin_bottom = 75
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsLabel/MarginContainer"]
+layout_mode = 2
+
+[node name="OptionsLabel" type="Label" parent="OptionsLabel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = "Friday the 13th lands on a
+Thursday this year."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Back" type="Button" parent="OptionsLabel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Back"
+
 [connection signal="pressed" from="Control/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="OptionsLabel/MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

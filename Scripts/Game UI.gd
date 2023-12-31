@@ -11,10 +11,13 @@ extends CanvasLayer
 @onready var Xbow_Unit = preload("res://Scenes/Characters/xbowman.tscn")
 @onready var MaxSpace = $CommanderStats/MaxSpace
 @onready var CurrSpace = $CommanderStats/CurrSpace
-var CommanderRounds = [2,5,8]
+var CommanderRounds = [2,5,9,15,21]
+var isPaused = false
 
 func _ready():
+	WaveButton.disabled = true
 	$WaveRewards.hide()
+	$PauseMenu.visible = false
 	WaveButton.text = "Start"
 	WaveCount.text = "Wave: " + str(Global.CurrWave)
 	$Stores/HumanStore.visible = false
@@ -73,6 +76,19 @@ func Add_Commander():
 		instance.position = targetpos
 		get_parent().add_child(instance)
 
+func Pause():
+	if $Controls.visible:
+		return
+		
+	if isPaused:
+		$PauseMenu.visible = false
+		isPaused = false
+		Engine.time_scale = 1
+	else:
+		$PauseMenu.visible = true
+		isPaused = true
+		Engine.time_scale = 0
+		
 
 func _on_infantry_pressed():
 	if Global.PlayerMoney >= Global.InfantryCost:
@@ -99,11 +115,11 @@ func _on_xbow_pressed():
 
 
 func _on_pause_pressed():
-	get_tree().change_scene_to_file("res://Scenes/TitleScreen.tscn")
+	Pause()
 
 
 func _on_quit_pressed():
-	get_tree().quit()
+	get_tree().change_scene_to_file("res://Scenes/TitleScreen.tscn")
 
 
 
@@ -113,10 +129,26 @@ func _on_wave_controller_pressed():
 	get_parent().get_node("SpawnController").Set_Spawns()
 	$Timer.start()
 
-func _on_test_2_pressed():
-	$WaveRewards.hide()
-	WaveButton.disabled = false
 
 
 func _on_timer_timeout():
 	Global.WaveReward = true
+
+
+
+func _on_ok_pressed():
+	if isPaused:
+		$PauseMenu.visible = true
+		$Controls.visible = false
+	else:
+		$Controls.visible = false
+		WaveButton.disabled = false
+
+
+func _on_resume_pressed():
+	Pause()
+	
+	
+func _on_controls_pressed():
+	$PauseMenu.visible = false
+	$Controls.visible = true

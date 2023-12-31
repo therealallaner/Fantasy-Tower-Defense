@@ -1,6 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://mltrhj62rtfc"]
 
 [ext_resource type="Script" path="res://Scripts/Game UI.gd" id="1_pvasg"]
+[ext_resource type="PackedScene" uid="uid://uampch6miue6" path="res://Scenes/UI_Scenes/wave_rewards.tscn" id="2_2islk"]
 [ext_resource type="Theme" uid="uid://cp2e2s82wiif8" path="res://Assets/UI/Themes/Augusta.tres" id="2_mttdy"]
 [ext_resource type="Texture2D" uid="uid://1bbvi1pcs3a5" path="res://Assets/My Sprites/LowMeleeUnit.png" id="3_2ul3f"]
 [ext_resource type="Texture2D" uid="uid://cs3r8cehshbxd" path="res://Assets/My Sprites/LowRangedUnit.png" id="4_d0j5u"]
@@ -8,42 +9,10 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qcrhb"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gm3gl"]
-
 [node name="Game UI" type="CanvasLayer"]
 script = ExtResource("1_pvasg")
 
-[node name="WaveRewards" type="PanelContainer" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -376.0
-offset_top = -198.5
-offset_right = 376.0
-offset_bottom = 198.5
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("2_mttdy")
-
-[node name="MarginContainer" type="MarginContainer" parent="WaveRewards"]
-layout_mode = 2
-theme_override_constants/margin_left = 250
-theme_override_constants/margin_top = 100
-theme_override_constants/margin_right = 250
-theme_override_constants/margin_bottom = 100
-
-[node name="VBoxContainer" type="VBoxContainer" parent="WaveRewards/MarginContainer"]
-layout_mode = 2
-
-[node name="test 1" type="Label" parent="WaveRewards/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Nice Wave!!"
-
-[node name="test 2" type="Button" parent="WaveRewards/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "OK"
+[node name="WaveRewards" parent="." instance=ExtResource("2_2islk")]
 
 [node name="GameStats" type="VBoxContainer" parent="."]
 anchors_preset = 5
@@ -133,6 +102,7 @@ self_modulate = Color(0.411765, 0.411765, 0.411765, 1)
 layout_mode = 2
 tooltip_text = "Swordsman
 Cost: 50
+Damage: 5
 Housing Space: 1"
 texture_normal = ExtResource("3_2ul3f")
 
@@ -145,6 +115,7 @@ self_modulate = Color(0.313726, 0.152941, 0, 1)
 layout_mode = 2
 tooltip_text = "X-Bow
 Cost: 75
+Damage: 8
 Housing Space: 1.5"
 texture_normal = ExtResource("4_d0j5u")
 stretch_mode = 1
@@ -186,20 +157,89 @@ text = "||"
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Quit" type="Button" parent="MenuButtons"]
-layout_mode = 2
-theme = ExtResource("5_g1t6w")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_gm3gl")
-text = "X"
-
-[node name="Spacer3" type="Control" parent="MenuButtons"]
-layout_mode = 2
-size_flags_horizontal = 3
-
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
-[connection signal="pressed" from="WaveRewards/MarginContainer/VBoxContainer/test 2" to="." method="_on_test_2_pressed"]
+[node name="Controls" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -849.0
+offset_top = -224.0
+offset_right = 849.0
+offset_bottom = 224.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_mttdy")
+
+[node name="MarginContainer" type="MarginContainer" parent="Controls"]
+layout_mode = 2
+theme_override_constants/margin_left = 300
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 300
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Controls/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Controls/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 75
+text = "Left-Click to Select your Commander.
+Right-Click on the map to move him.
+Add troops to his command.
+Defend the Tower."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer" type="Control" parent="Controls/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="OK" type="Button" parent="Controls/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "OK"
+
+[node name="PauseMenu" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -525.5
+offset_top = -371.5
+offset_right = 525.5
+offset_bottom = 371.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_mttdy")
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 250
+theme_override_constants/margin_top = 75
+theme_override_constants/margin_right = 250
+theme_override_constants/margin_bottom = 75
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/MarginContainer"]
+layout_mode = 2
+
+[node name="Resume" type="Button" parent="PauseMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="Controls" type="Button" parent="PauseMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Controls"
+
+[node name="Quit" type="Button" parent="PauseMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+
 [connection signal="pressed" from="GameStats/WaveController" to="." method="_on_wave_controller_pressed"]
 [connection signal="mouse_entered" from="Stores/HumanStore/Infantry/Infantry" to="." method="_on_infantry_mouse_entered"]
 [connection signal="mouse_exited" from="Stores/HumanStore/Infantry/Infantry" to="." method="_on_infantry_mouse_exited"]
@@ -208,5 +248,8 @@ one_shot = true
 [connection signal="mouse_exited" from="Stores/HumanStore/Xbowman/Xbow" to="." method="_on_xbow_mouse_exited"]
 [connection signal="pressed" from="Stores/HumanStore/Xbowman/Xbow" to="." method="_on_xbow_pressed"]
 [connection signal="pressed" from="MenuButtons/Pause" to="." method="_on_pause_pressed"]
-[connection signal="pressed" from="MenuButtons/Quit" to="." method="_on_quit_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="Controls/MarginContainer/VBoxContainer/OK" to="." method="_on_ok_pressed"]
+[connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/Controls" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

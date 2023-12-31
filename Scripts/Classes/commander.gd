@@ -18,7 +18,12 @@ func _process(delta):
 	if Input.is_action_just_pressed("Right-Click"):
 		if Global.SelectedCommander == self:
 			Target = get_global_mouse_position()
-		
+	
+	if Global.SelectedCommander == self:
+		$Selected.visible = true
+	else:
+		$Selected.visible = false	
+	
 	if position == Target:
 		Target = null
 		

@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://dhbremyfpt2ig"]
 
-[ext_resource type="Texture2D" uid="uid://ca6qkqhvb1sa" path="res://Assets/GtrassBG.jpg" id="1_fb5ao"]
 [ext_resource type="Script" path="res://Scripts/node_2d.gd" id="1_m7q4i"]
 [ext_resource type="PackedScene" uid="uid://db4r6xtfnmees" path="res://Scenes/Objects/tower.tscn" id="2_8533y"]
+[ext_resource type="Texture2D" uid="uid://ca6qkqhvb1sa" path="res://Assets/GtrassBG.jpg" id="2_obh4j"]
 [ext_resource type="PackedScene" uid="uid://mltrhj62rtfc" path="res://Scenes/UI_Scenes/game_ui.tscn" id="4_j1k6x"]
 [ext_resource type="PackedScene" uid="uid://bvmdjp8ft6ch5" path="res://Scenes/Objects/spawner.tscn" id="5_bipg0"]
 [ext_resource type="PackedScene" uid="uid://bqs4a86blc0tl" path="res://Scenes/Objects/SpawnController.tscn" id="6_00qip"]
@@ -12,10 +12,11 @@ y_sort_enabled = true
 script = ExtResource("1_m7q4i")
 
 [node name="GrassBg" type="Sprite2D" parent="."]
+self_modulate = Color(0.737255, 0.737255, 0.737255, 1)
 z_index = -4
-position = Vector2(968, 535)
-scale = Vector2(1.56016, 1.55833)
-texture = ExtResource("1_fb5ao")
+position = Vector2(972, 534)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("2_obh4j")
 
 [node name="TheTower" parent="." instance=ExtResource("2_8533y")]
 position = Vector2(967, 530)
