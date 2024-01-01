@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://uampch6miue6"]
+[gd_scene load_steps=4 format=3 uid="uid://uampch6miue6"]
 
 [ext_resource type="Theme" uid="uid://cp2e2s82wiif8" path="res://Assets/UI/Themes/Augusta.tres" id="1_0658s"]
 [ext_resource type="Script" path="res://Scripts/WaveRewards/wave_rewards.gd" id="2_3cxde"]
+[ext_resource type="PackedScene" uid="uid://4lybuacafu46" path="res://Scenes/Components/spacer.tscn" id="3_b6eoa"]
 
 [node name="WaveRewards" type="PanelContainer"]
 anchors_preset = 8
@@ -32,8 +33,47 @@ layout_mode = 2
 layout_mode = 2
 text = "Nice Wave!!"
 
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Spacer4" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Option 1" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "1"
+
+[node name="Spacer" parent="MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_b6eoa")]
+layout_mode = 2
+
+[node name="Option 2" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "2"
+
+[node name="Spacer2" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Option 3" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "3"
+
+[node name="Spacer3" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
 [node name="test 2" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "OK"
 
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Option 1" to="." method="_on_option_1_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Option 2" to="." method="_on_option_2_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Option 3" to="." method="_on_option_3_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/test 2" to="." method="_on_test_2_pressed"]

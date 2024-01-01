@@ -58,6 +58,7 @@ func Button_Management(space):
 func WaveRewards():
 	var MoneyExponent: int
 	Global.WaveReward = false
+	$WaveRewards.Randomize_Rewards()
 	$WaveRewards.show()
 	if Global.CurrWave < 4:
 		MoneyExponent = 20
