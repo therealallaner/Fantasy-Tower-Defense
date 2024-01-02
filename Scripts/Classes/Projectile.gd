@@ -17,5 +17,4 @@ func _on_timer_timeout():
 func _on_area_2d_body_entered(body):
 	if body == Target:
 		Target.HP -= attackDMG
-		print("Dealt ", attackDMG," damage. ", Target.HP)
 		queue_free()

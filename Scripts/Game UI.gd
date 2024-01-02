@@ -67,7 +67,7 @@ func WaveRewards():
 	else:
 		MoneyExponent = 10
 	
-	Global.PlayerMoney += MoneyExponent + MoneyExponent * Global.CurrWave
+	Global.PlayerMoney += MoneyExponent * Global.ExtraMoney + MoneyExponent * Global.CurrWave
 	Add_Commander()
 
 func Add_Commander():

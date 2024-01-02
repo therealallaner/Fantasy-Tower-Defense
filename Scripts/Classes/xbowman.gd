@@ -5,7 +5,7 @@ class_name Xbow
 func _ready():
 	isenemy = false
 	Speed = 100
-	attackDMG = 8
+	attackDMG = Global.XbowDmg
 	HP = 12
 	Find_Target()
 

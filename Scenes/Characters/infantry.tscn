@@ -11,7 +11,7 @@ height = 22.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_owgjn"]
 radius = 19.0263
 
-[node name="Infantry" type="CharacterBody2D"]
+[node name="Infantry" type="CharacterBody2D" groups=["Melee"]]
 collision_layer = 2
 collision_mask = 13
 script = ExtResource("1_ubutd")

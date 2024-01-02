@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://uampch6miue6"]
+[gd_scene load_steps=10 format=3 uid="uid://uampch6miue6"]
 
 [ext_resource type="Theme" uid="uid://cp2e2s82wiif8" path="res://Assets/UI/Themes/Augusta.tres" id="1_0658s"]
 [ext_resource type="Script" path="res://Scripts/WaveRewards/wave_rewards.gd" id="2_3cxde"]
 [ext_resource type="PackedScene" uid="uid://4lybuacafu46" path="res://Scenes/Components/spacer.tscn" id="3_b6eoa"]
+[ext_resource type="Texture2D" uid="uid://bnsb05lkxkjnf" path="res://Assets/TestTextures/Again.png" id="3_kpq6w"]
+[ext_resource type="Texture2D" uid="uid://dsi0iyh1qs3wa" path="res://Assets/TestTextures/BagoGold.png" id="3_o7srh"]
+[ext_resource type="Texture2D" uid="uid://clxm4ymrh6hhv" path="res://Assets/TestTextures/RoundCash.png" id="5_bhtc0"]
+[ext_resource type="Texture2D" uid="uid://bfdcpji2yxwou" path="res://Assets/TestTextures/MeleeUpgrade.png" id="6_oli7u"]
+[ext_resource type="Texture2D" uid="uid://dumxnopujhu6f" path="res://Assets/TestTextures/RangedUpgrade.png" id="7_0say8"]
+[ext_resource type="Texture2D" uid="uid://bv58vt22wws37" path="res://Assets/My Sprites/LowCommander.png" id="8_1p8rg"]
 
 [node name="WaveRewards" type="PanelContainer"]
 anchors_preset = 8
@@ -18,6 +24,11 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_0658s")
 script = ExtResource("2_3cxde")
+again = ExtResource("3_kpq6w")
+bagogold = ExtResource("3_o7srh")
+stonks = ExtResource("5_bhtc0")
+melee = ExtResource("6_oli7u")
+ranged = ExtResource("7_0say8")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -40,27 +51,22 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Option 1" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Option 1" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 15
-text = "1"
+texture_normal = ExtResource("8_1p8rg")
 
 [node name="Spacer" parent="MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_b6eoa")]
 layout_mode = 2
 
-[node name="Option 2" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Option 2" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 15
-text = "2"
 
 [node name="Spacer2" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Option 3" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Option 3" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 15
-text = "3"
 
 [node name="Spacer3" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
