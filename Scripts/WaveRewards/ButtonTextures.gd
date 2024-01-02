@@ -9,5 +9,9 @@ class_name ButtonTextures
 @export var ranged: Texture
 
 
-@onready var test1 = preload("res://Assets/My Sprites/LowCommander.png")
-@onready var test2 = preload("res://Assets/My Sprites/LowGoblin.png")
+var againdesc = "Reroll Wave Rewards"
+var bagogolddesc = "Gain $25"
+var stonksdesc = "Increase End of Round Income"
+var meleedesc = "Increase Melee Unit damage by 1"
+var rangeddesc = "Increase Ranged Unit damage by 1"
+

@@ -16,6 +16,14 @@ var rewards = [Bag_o_Gold, Melee_Upgrade, Ranged_Upgrade, Round_Cash]
 	Round_Cash: stonks,
 	Again: again,
 	}
+@onready var ButtonToolTips = {
+	Bag_o_Gold: bagogolddesc, 
+	Melee_Upgrade: meleedesc, 
+	Ranged_Upgrade: rangeddesc,
+	Round_Cash: stonksdesc,
+	Again: againdesc,
+
+}
 
 func _ready():
 	print(Buttons.keys())
@@ -31,9 +39,15 @@ func Randomize_Rewards():
 		var randomItem = rewards[randomIndex]
 		if randomItem not in random_rewards:
 			random_rewards.append(randomItem)
+			
 	R0.texture_normal = Buttons[random_rewards[0]]
+	R0.tooltip_text = ButtonToolTips[random_rewards[0]]
+	
 	R1.texture_normal = Buttons[random_rewards[1]]
+	R1.tooltip_text = ButtonToolTips[random_rewards[1]]
+	
 	R2.texture_normal = Buttons[random_rewards[2]]
+	R2.tooltip_text = ButtonToolTips[random_rewards[2]]
 	
 	
 	if Global.CurrWave == 4:
