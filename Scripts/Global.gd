@@ -16,3 +16,12 @@ var CaptainCost = 150
 var TowerHP: int
 var WaveisActive = false
 var WaveReward = false
+
+
+func loser():
+	get_tree().change_scene_to_file("res://Scenes/TitleScreen.tscn")
+	CurrWave = 0
+	ExtraMoney = 1
+	CommanderMax = 7
+	InfantryDmg = 5
+	XbowDmg = 8

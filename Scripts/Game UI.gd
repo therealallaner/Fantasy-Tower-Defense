@@ -14,7 +14,12 @@ extends CanvasLayer
 var CommanderRounds = [2,5,9,15,21]
 var isPaused = false
 
+@onready var test = $HighestRound
+var HighScore: int = 0
+
 func _ready():
+	Engine.time_scale = 1
+	$Node.load_game()
 	WaveButton.disabled = true
 	$WaveRewards.hide()
 	$PauseMenu.visible = false
@@ -69,6 +74,8 @@ func WaveRewards():
 	
 	Global.PlayerMoney += MoneyExponent * Global.ExtraMoney + MoneyExponent * Global.CurrWave
 	Add_Commander()
+	$Node.save_game()
+	Test()
 
 func Add_Commander():
 	if Global.CurrWave in CommanderRounds:
@@ -120,7 +127,8 @@ func _on_pause_pressed():
 
 
 func _on_quit_pressed():
-	get_tree().change_scene_to_file("res://Scenes/TitleScreen.tscn")
+	Global.loser()
+#	get_tree().change_scene_to_file("res://Scenes/TitleScreen.tscn")
 
 
 
@@ -153,3 +161,21 @@ func _on_resume_pressed():
 func _on_controls_pressed():
 	$PauseMenu.visible = false
 	$Controls.visible = true
+
+
+func Test():
+	if Global.CurrWave > HighScore:
+		HighScore = Global.CurrWave
+	test.text = "Highest Round: " + str(HighScore)
+
+func on_save_game(saved_data:Array[SavedData]):
+	var my_data = SavedData.new()
+	my_data.highscore = HighScore
+	saved_data.append(my_data)
+
+func on_before_load_game():
+	pass
+	
+func on_load_game(saved_data:SavedData):
+	HighScore = saved_data.highscore
+	Test()

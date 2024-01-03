@@ -16,7 +16,7 @@ func _process(delta):
 		$"Game UI".Pause()
 	
 	if $TheTower.HP <= 0:
-		Global.CurrWave = 0
-		get_tree().change_scene_to_file("res://Scenes/TitleScreen.tscn")
+		Global.loser()
+#		get_tree().change_scene_to_file("res://Scenes/TitleScreen.tscn")
 
 
