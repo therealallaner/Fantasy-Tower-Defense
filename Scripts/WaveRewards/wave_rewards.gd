@@ -8,31 +8,40 @@ extends ButtonTextures
 @onready var R2 = $"MarginContainer/VBoxContainer/HBoxContainer/Option 3"
 var reward_buttons = []
 var random_rewards = []
-var rewards = [Bag_o_Gold, Melee_Upgrade, Ranged_Upgrade, Round_Cash]
+var rewards = [
+	Bag_o_Gold, 
+	Melee_Upgrade, 
+	Ranged_Upgrade, 
+	Round_Cash,
+	]
+	
 @onready var Buttons = {
 	Bag_o_Gold: bagogold, 
 	Melee_Upgrade: melee, 
 	Ranged_Upgrade: ranged,
 	Round_Cash: stonks,
 	Again: again,
+	TowerHP: tower,
+	CommanderSpace: commander,
 	}
+	
 @onready var ButtonToolTips = {
 	Bag_o_Gold: bagogolddesc, 
 	Melee_Upgrade: meleedesc, 
 	Ranged_Upgrade: rangeddesc,
 	Round_Cash: stonksdesc,
 	Again: againdesc,
-
-}
+	TowerHP: towerdesc,
+	CommanderSpace: commanderdesc
+	}
 
 func _ready():
-	print(Buttons.keys())
-	print(Buttons)
 	reward_buttons.append(R0)
 	reward_buttons.append(R1)
 	reward_buttons.append(R2)
 
 func Randomize_Rewards():
+	Update_Tooltips()
 	random_rewards = []
 	while random_rewards.size() < 3:
 		var randomIndex = randi() % rewards.size()
@@ -52,10 +61,24 @@ func Randomize_Rewards():
 	
 	if Global.CurrWave == 4:
 		rewards.append(Again)
+		rewards.append(TowerHP)
 	if Global.CurrWave == 7:
-		pass
+		rewards.append(CommanderSpace)
 	
+func Update_Tooltips():
+	ButtonToolTips[Again] = "Reroll Wave Rewards"
+
+	ButtonToolTips[Bag_o_Gold] = "Gain $25"
+
+	ButtonToolTips[Round_Cash] = "Increase End of Round Income"
+
+	ButtonToolTips[Melee_Upgrade] = "Increase Melee Unit damage by 1
+Current damage is: " + str(Global.InfantryDmg)
+
+	ButtonToolTips[Ranged_Upgrade] = "Increase Ranged Unit damage by 1
+Current damage is: " + str(Global.XbowDmg)
 	
+
 
 func _on_test_2_pressed():
 	self.hide()
@@ -101,6 +124,20 @@ func Ranged_Upgrade():
 func Again():
 	Randomize_Rewards()
 
+func TowerHP():
+	var tower = get_tree().get_nodes_in_group("Tower")
+	print(tower)
+	for t in tower:
+		t.HP += 10
+	Close()
+	
+func CommanderSpace():
+	Global.CommanderMax += 1
+	var Command = get_tree().get_nodes_in_group("Commander")
+	for c in Command:
+		c.max_troop_command = Global.CommanderMax
+	Close()
+		
 func Close():
 	self.hide()
 	WaveButton.disabled = false

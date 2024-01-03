@@ -60,3 +60,11 @@ position = Vector2(-106, 705)
 
 [node name="Spawner3" parent="Wave 7" instance=ExtResource("5_bipg0")]
 position = Vector2(-97, 1099)
+
+[node name="Wave 8" type="Node2D" parent="."]
+
+[node name="Spawner" parent="Wave 8" instance=ExtResource("5_bipg0")]
+position = Vector2(469, -174)
+
+[node name="Spawner3" parent="Wave 8" instance=ExtResource("5_bipg0")]
+position = Vector2(1998, 1166)

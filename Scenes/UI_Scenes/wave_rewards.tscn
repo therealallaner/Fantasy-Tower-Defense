@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://uampch6miue6"]
+[gd_scene load_steps=11 format=3 uid="uid://uampch6miue6"]
 
 [ext_resource type="Theme" uid="uid://cp2e2s82wiif8" path="res://Assets/UI/Themes/Augusta.tres" id="1_0658s"]
 [ext_resource type="Script" path="res://Scripts/WaveRewards/wave_rewards.gd" id="2_3cxde"]
@@ -8,7 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://clxm4ymrh6hhv" path="res://Assets/TestTextures/RoundCash.png" id="5_bhtc0"]
 [ext_resource type="Texture2D" uid="uid://bfdcpji2yxwou" path="res://Assets/TestTextures/MeleeUpgrade.png" id="6_oli7u"]
 [ext_resource type="Texture2D" uid="uid://dumxnopujhu6f" path="res://Assets/TestTextures/RangedUpgrade.png" id="7_0say8"]
-[ext_resource type="Texture2D" uid="uid://bv58vt22wws37" path="res://Assets/My Sprites/LowCommander.png" id="8_1p8rg"]
+[ext_resource type="Texture2D" uid="uid://ck7r0jtlhjbm6" path="res://Assets/My Sprites/Tower.png" id="8_fldyy"]
+[ext_resource type="Texture2D" uid="uid://bv58vt22wws37" path="res://Assets/My Sprites/LowCommander.png" id="9_ni11u"]
 
 [node name="WaveRewards" type="PanelContainer"]
 anchors_preset = 8
@@ -29,6 +30,8 @@ bagogold = ExtResource("3_o7srh")
 stonks = ExtResource("5_bhtc0")
 melee = ExtResource("6_oli7u")
 ranged = ExtResource("7_0say8")
+tower = ExtResource("8_fldyy")
+commander = ExtResource("9_ni11u")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -53,13 +56,14 @@ size_flags_horizontal = 3
 
 [node name="Option 1" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-texture_normal = ExtResource("8_1p8rg")
+texture_normal = ExtResource("6_oli7u")
 
 [node name="Spacer" parent="MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_b6eoa")]
 layout_mode = 2
 
 [node name="Option 2" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+texture_normal = ExtResource("7_0say8")
 
 [node name="Spacer2" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -67,12 +71,14 @@ size_flags_horizontal = 3
 
 [node name="Option 3" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+texture_normal = ExtResource("3_o7srh")
 
 [node name="Spacer3" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="test 2" type="Button" parent="MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "OK"
 

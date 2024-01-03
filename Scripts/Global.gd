@@ -4,6 +4,7 @@ var PlayerMoney: int = 0
 var ExtraMoney: int = 1
 var CurrWave: int = 0
 var SelectedCommander = null
+var CommanderMax: int = 7
 var InfantryHousing = 1
 var InfantryCost = 50
 var InfantryDmg = 5

@@ -3,7 +3,7 @@ class_name Commander
 
 
 var isselected = false
-var max_troop_command = 7
+var max_troop_command = Global.CommanderMax
 var current_command = 0
 var mouse_hovering = false
 var Speed = 95

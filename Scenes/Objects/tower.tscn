@@ -10,7 +10,7 @@ size = Vector2(120, 46)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_glhhy"]
 size = Vector2(128, 84)
 
-[node name="Tower" type="StaticBody2D"]
+[node name="Tower" type="StaticBody2D" groups=["Tower"]]
 collision_mask = 15
 script = ExtResource("1_quld6")
 
