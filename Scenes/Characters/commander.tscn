@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bl3chbfd40ncq"]
+[gd_scene load_steps=7 format=3 uid="uid://bl3chbfd40ncq"]
 
 [ext_resource type="Script" path="res://Scripts/Classes/commander.gd" id="1_4r3id"]
 [ext_resource type="Texture2D" uid="uid://bv58vt22wws37" path="res://Assets/My Sprites/LowCommander.png" id="1_yloek"]
+[ext_resource type="PackedScene" uid="uid://cv2gd7qiksr6n" path="res://Scenes/UI_Scenes/commander_stats.tscn" id="3_gmq1k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xt5r4"]
 size = Vector2(23, 16)
@@ -15,7 +16,6 @@ radius = 137.768
 
 [node name="Commander" type="CharacterBody2D" groups=["Commander"]]
 collision_layer = 0
-collision_mask = 13
 script = ExtResource("1_4r3id")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -45,6 +45,9 @@ collision_mask = 15
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaofCommand"]
 visible = false
 shape = SubResource("CircleShape2D_ngnaw")
+
+[node name="CommanderStats" parent="." instance=ExtResource("3_gmq1k")]
+visible = false
 
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

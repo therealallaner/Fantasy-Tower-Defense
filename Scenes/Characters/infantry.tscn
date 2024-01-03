@@ -9,9 +9,9 @@ radius = 9.0
 height = 22.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_owgjn"]
-radius = 19.0263
+radius = 28.0
 
-[node name="Infantry" type="CharacterBody2D" groups=["Melee"]]
+[node name="Infantry" type="CharacterBody2D" groups=["Army", "Melee"]]
 collision_layer = 2
 collision_mask = 13
 script = ExtResource("1_ubutd")
@@ -26,7 +26,7 @@ shape = SubResource("CapsuleShape2D_xgo0f")
 
 [node name="AttackRange" type="Area2D" parent="."]
 collision_layer = 2
-collision_mask = 15
+collision_mask = 13
 script = ExtResource("3_7ntuh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]

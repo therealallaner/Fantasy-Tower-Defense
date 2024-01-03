@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqj2ddivrw3lw"]
+
+[ext_resource type="Script" path="res://Scripts/UIStuff/TroopSlot.gd" id="1_mtsqv"]
+[ext_resource type="Texture2D" uid="uid://1bbvi1pcs3a5" path="res://Assets/My Sprites/LowMeleeUnit.png" id="2_1ktw7"]
+
+[node name="TroopSlot" type="PanelContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_mtsqv")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 150
+theme_override_constants/margin_bottom = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="TroopPic" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_1ktw7")
+
+[node name="TroopStats" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "HP = 35"

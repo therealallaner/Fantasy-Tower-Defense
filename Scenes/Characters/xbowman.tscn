@@ -10,10 +10,10 @@ radius = 15.0
 height = 38.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_65rf6"]
-radius = 95.0
+radius = 123.0
 height = 264.0
 
-[node name="Xbow" type="CharacterBody2D" groups=["Ranged"]]
+[node name="Xbow" type="CharacterBody2D" groups=["Army", "Ranged"]]
 collision_layer = 2
 collision_mask = 13
 script = ExtResource("1_5adh0")
@@ -30,11 +30,10 @@ shape = SubResource("CapsuleShape2D_w74di")
 
 [node name="AttackRange" type="Area2D" parent="."]
 collision_layer = 2
-collision_mask = 15
+collision_mask = 13
 script = ExtResource("3_p22ys")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
-visible = false
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_65rf6")
 

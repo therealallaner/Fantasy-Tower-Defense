@@ -4,7 +4,7 @@ class_name Infantry
 func _ready():
 	isenemy = false
 	attackDMG = Global.InfantryDmg
-	HP = 15
+	HP = 50
 	Find_Target()
 
 

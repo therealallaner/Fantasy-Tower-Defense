@@ -106,6 +106,7 @@ layout_mode = 2
 tooltip_text = "Swordsman
 Cost: 50
 Damage: 5
+HP: 50
 Housing Space: 1"
 texture_normal = ExtResource("3_2ul3f")
 
@@ -119,6 +120,7 @@ layout_mode = 2
 tooltip_text = "X-Bow
 Cost: 75
 Damage: 8
+HP: 30
 Housing Space: 1.5"
 texture_normal = ExtResource("4_d0j5u")
 stretch_mode = 1
