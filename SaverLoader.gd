@@ -19,6 +19,8 @@ func load_game():
 	
 	get_tree().call_group("game_events", "on_before_load_game")
 	
+	if !saved_game:
+		return
 	for item in saved_game.saved_data:
 		var nodes = get_tree().get_nodes_in_group("game_events")
 		for node in nodes:

@@ -74,8 +74,8 @@ func WaveRewards():
 	
 	Global.PlayerMoney += MoneyExponent * Global.ExtraMoney + MoneyExponent * Global.CurrWave
 	Add_Commander()
-	$Node.save_game()
 	Test()
+	$Node.save_game()
 
 func Add_Commander():
 	if Global.CurrWave in CommanderRounds:
