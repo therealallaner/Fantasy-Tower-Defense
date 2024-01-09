@@ -7,6 +7,7 @@ func _ready():
 	Speed = 100
 	attackDMG = Global.XbowDmg
 	HP = 30
+	AggroWeight = 15
 	Find_Target()
 
 

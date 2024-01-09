@@ -5,6 +5,7 @@ func _ready():
 	isenemy = false
 	attackDMG = Global.InfantryDmg
 	HP = 50
+	AggroWeight = 0
 	Find_Target()
 
 

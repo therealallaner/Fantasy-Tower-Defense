@@ -13,6 +13,7 @@ var patrol_location: Vector2
 var isinCommandRange = false
 var Target = null
 var Command = null
+var AggroWeight:int = 0
 
 func Test():
 	print("Yur mum")
@@ -88,3 +89,11 @@ func Find_Target():
 	else:
 		var Commander = Global.SelectedCommander
 		Command = Commander
+
+func DrawAggro(body):
+	var rng = randf()
+	var percent = rng * 100
+	var aggro = percent - body.AggroWeight
+	if aggro < 10:
+		Target = body
+	print(percent," ",aggro," ",Target)

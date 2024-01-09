@@ -10,10 +10,9 @@ func _ready():
 
 
 func _on_attack_range_body_entered(body):
+	if body.is_in_group("Army"):
+		DrawAggro(body)
 	if body == Target:
-		Ranged_Attack()
-	elif body.is_in_group("Army"):
-		Target = body
 		Ranged_Attack()
 
 
