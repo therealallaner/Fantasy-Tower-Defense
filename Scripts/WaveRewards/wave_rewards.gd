@@ -6,6 +6,7 @@ extends ButtonTextures
 @onready var R0 = $"MarginContainer/VBoxContainer/HBoxContainer/Option 1"
 @onready var R1 = $"MarginContainer/VBoxContainer/HBoxContainer/Option 2"
 @onready var R2 = $"MarginContainer/VBoxContainer/HBoxContainer/Option 3"
+var LastSelection
 var reward_buttons = []
 var random_rewards = []
 var rewards = [
@@ -43,12 +44,21 @@ func _ready():
 func Randomize_Rewards():
 	Update_Tooltips()
 	random_rewards = []
+	var isLast = false
 	while random_rewards.size() < 3:
 		var randomIndex = randi() % rewards.size()
 		var randomItem = rewards[randomIndex]
 		if randomItem not in random_rewards:
-			random_rewards.append(randomItem)
-			
+			print(randomItem, " ", isLast)
+			if randomItem == LastSelection:
+				if !isLast:
+					isLast = true
+				else:
+					random_rewards.append(randomItem)
+			else:
+				random_rewards.append(randomItem)
+	
+	
 	R0.texture_normal = Buttons[random_rewards[0]]
 	R0.tooltip_text = ButtonToolTips[random_rewards[0]]
 	
@@ -64,6 +74,7 @@ func Randomize_Rewards():
 		rewards.append(TowerHP)
 	if Global.CurrWave == 7:
 		rewards.append(CommanderSpace)
+		
 	
 func Update_Tooltips():
 	ButtonToolTips[Again] = "Reroll Wave Rewards"
@@ -101,10 +112,12 @@ func _on_option_3_pressed():
 	
 func Bag_o_Gold():
 	Global.PlayerMoney += 25
+	LastSelection = Bag_o_Gold
 	Close()
 	
 func Round_Cash():
 	Global.ExtraMoney += 1
+	LastSelection = Round_Cash
 	Close()
 	
 func Melee_Upgrade():
@@ -112,6 +125,7 @@ func Melee_Upgrade():
 	var melee = get_tree().get_nodes_in_group("Melee")
 	for m in melee:
 		m.attackDMG = Global.InfantryDmg
+	LastSelection = Melee_Upgrade
 	Close()
 	
 func Ranged_Upgrade():
@@ -119,16 +133,19 @@ func Ranged_Upgrade():
 	var range = get_tree().get_nodes_in_group("Ranged")
 	for r in range:
 		r.attackDMG = Global.XbowDmg
+	LastSelection = Ranged_Upgrade
 	Close()
 
 func Again():
 	Randomize_Rewards()
+	LastSelection = Again
 
 func TowerHP():
 	var tower = get_tree().get_nodes_in_group("Tower")
 	print(tower)
 	for t in tower:
 		t.HP += 10
+	LastSelection = TowerHP
 	Close()
 	
 func CommanderSpace():
@@ -136,8 +153,10 @@ func CommanderSpace():
 	var Command = get_tree().get_nodes_in_group("Commander")
 	for c in Command:
 		c.max_troop_command = Global.CommanderMax
+	LastSelection = CommanderSpace
 	Close()
 		
 func Close():
 	self.hide()
 	WaveButton.disabled = false
+	print(LastSelection, " ", random_rewards)
