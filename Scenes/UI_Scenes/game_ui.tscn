@@ -20,6 +20,7 @@ script = ExtResource("1_pvasg")
 
 [node name="WaveRewards" parent="." instance=ExtResource("2_2islk")]
 captain = ExtResource("4_ned5h")
+support = ExtResource("4_ned5h")
 
 [node name="GameStats" type="VBoxContainer" parent="."]
 anchors_preset = 5
@@ -68,6 +69,7 @@ grow_vertical = 0
 pivot_offset = Vector2(25, 0)
 
 [node name="MaxSpace" type="Label" parent="CommanderStats"]
+visible = false
 layout_mode = 2
 theme = ExtResource("2_mttdy")
 theme_override_font_sizes/font_size = 25
@@ -78,6 +80,11 @@ layout_mode = 2
 theme = ExtResource("2_mttdy")
 theme_override_font_sizes/font_size = 25
 text = "Current Troops: 0"
+
+[node name="CaptainCount" type="Label" parent="CommanderStats"]
+layout_mode = 2
+theme = ExtResource("2_mttdy")
+theme_override_font_sizes/font_size = 25
 
 [node name="Stores" type="Control" parent="."]
 layout_mode = 3

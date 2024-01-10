@@ -3,6 +3,8 @@ extends ButtonTextures
 @onready var spacer = preload("res://Scenes/Components/spacer.tscn")
 @onready var WaveButton = get_parent().get_node("GameStats/WaveController")
 
+var isCapUnlocked = false
+
 @onready var R0 = $"MarginContainer/VBoxContainer/HBoxContainer/Option 1"
 @onready var R1 = $"MarginContainer/VBoxContainer/HBoxContainer/Option 2"
 @onready var R2 = $"MarginContainer/VBoxContainer/HBoxContainer/Option 3"
@@ -25,6 +27,7 @@ var rewards = [
 	TowerHP: tower,
 	CommanderSpace: commander,
 	Captain_Unlock: captain,
+	Support_Upgrade: support,
 	}
 	
 @onready var ButtonToolTips = {
@@ -36,6 +39,7 @@ var rewards = [
 	TowerHP: towerdesc,
 	CommanderSpace: commanderdesc,
 	Captain_Unlock: captaindesc,
+	Support_Upgrade: supportdesc,
 	}
 
 func _ready():
@@ -82,6 +86,12 @@ func Randomize_Rewards():
 		var newpercent = percent + (Global.CurrWave * 3)
 		print(percent," ",newpercent)
 		if newpercent > 85:
+			rewards.append(Captain_Unlock)
+			
+	if Support_Upgrade not in rewards and isCapUnlocked:
+		var rng = randf()
+		var percent = rng * 100
+		if percent > 75:
 			rewards.append(Captain_Unlock)
 	
 func Update_Tooltips():
@@ -134,6 +144,7 @@ func Melee_Upgrade():
 	for m in melee:
 		m.attackDMG = Global.InfantryDmg
 	LastSelection = Melee_Upgrade
+	get_parent().Inf_B.tooltip_text = "Infantry\nCost: 50\nDamage: " + str(Global.InfantryDmg) + "\nHP: 50\nHousing Space: 1"
 	Close()
 	
 func Ranged_Upgrade():
@@ -142,6 +153,13 @@ func Ranged_Upgrade():
 	for r in range:
 		r.attackDMG = Global.XbowDmg
 	LastSelection = Ranged_Upgrade
+	get_parent().Xbow_B.tooltip_text = "X-Bow\nCost: 75\nDamage: " + str(Global.XbowDmg) + "\nHP: 30\nHousing Space: 1.5"
+#	X-Bow
+#	Cost: 75
+#	Damage: 8
+#	HP: 30
+#	Housing Space: 1.5
+	
 	Close()
 
 func Again():
@@ -166,20 +184,23 @@ func CommanderSpace():
 
 func Captain_Unlock():
 	get_parent().Cap_B.visible = true
+	get_parent().CapCount.visible = true
+	isCapUnlocked = true
 	#add new upgrades for the captain into the reward pool.
 	LastSelection = Captain_Unlock
-	print(rewards)
 	var index = rewards.find(Captain_Unlock)
 	rewards.remove_at(index)
-	print(rewards)
+	rewards.append(Support_Upgrade)
 	Close()
 	
 
 func Support_Upgrade():
-	Global.CaptainDmg += 1
-	var range = get_tree().get_nodes_in_group("Support")
+	Global.CaptainMax += 1
+	var range = get_tree().get_nodes_in_group("Commander")
 	for r in range:
-		r.attackDMG = Global.CaptainDmg
+		r.max_captains = Global.CaptainMax
+	var index = rewards.find(Support_Upgrade)
+	rewards.remove_at(index)
 	LastSelection = Support_Upgrade
 	Close()
 	

@@ -13,8 +13,13 @@ extends CanvasLayer
 @onready var Captain_Unit = preload("res://Scenes/Characters/captain.tscn")
 @onready var MaxSpace = $CommanderStats/MaxSpace
 @onready var CurrSpace = $CommanderStats/CurrSpace
-var CommanderRounds = [2,5,9,15,21]
+@onready var CapCount = $CommanderStats/CaptainCount
+var CommanderRounds = [3,7,11,15,21]
 var isPaused = false
+
+var Inf_Stats = []
+var Xbow_Stats = []
+var Cap_Stats = []
 
 @onready var test = $HighestRound
 var HighScore: int = 0
@@ -30,12 +35,13 @@ func _ready():
 	$Stores/HumanStore.visible = false
 	$CommanderStats.visible = false
 	Cap_B.visible = false
+	CapCount.visible = false
 
 func _process(delta):
 	Money.text = "$" + str(Global.PlayerMoney)
 	WaveCount.text = "Wave: " + str(Global.CurrWave)
 	if Global.WaveisActive:
-		WaveButton.text = "Yur mum"
+		WaveButton.text = ""
 		WaveButton.disabled = true
 	else:
 		WaveButton.text = "Start"
@@ -47,9 +53,11 @@ func _process(delta):
 func Check_Troops():
 	var max = Global.SelectedCommander.max_troop_command
 	var curr = Global.SelectedCommander.current_command
+	var cap = Global.SelectedCommander.captain_count
+	var capmax = Global.CaptainMax
 	var space = max - curr
-	MaxSpace.text = "Max Troop Space: " + str(max)
-	CurrSpace.text = "Current Troops: " + str(curr)
+	CurrSpace.text = "Current Troops: " + str(curr) + "/" + str(max)
+	CapCount.text = "Captain Count: " + str(cap) + "/" + str(capmax)
 	Button_Management(space)
 		
 func Button_Management(space):
@@ -62,6 +70,11 @@ func Button_Management(space):
 		Xbow_B.disabled = true
 	else:
 		Xbow_B.disabled = false
+		
+	if Global.SelectedCommander.captain_count >= Global.CaptainMax:
+		Cap_B.disabled = true
+	else:
+		Cap_B.disabled = false
 	
 func WaveRewards():
 	var MoneyExponent: int
@@ -69,11 +82,11 @@ func WaveRewards():
 	$WaveRewards.Randomize_Rewards()
 	$WaveRewards.show()
 	if Global.CurrWave < 4:
-		MoneyExponent = 20
+		MoneyExponent = 18
 	elif Global.CurrWave < 10:
-		MoneyExponent = 15
+		MoneyExponent = 12
 	else:
-		MoneyExponent = 10
+		MoneyExponent = 7
 	
 	Global.PlayerMoney += MoneyExponent * Global.ExtraMoney + MoneyExponent * Global.CurrWave
 	Add_Commander()
@@ -133,6 +146,7 @@ func _on_captain_pressed():
 		get_parent().add_child(instance)
 		Global.SelectedCommander.current_command += Global.CaptainHousing
 		Global.SelectedCommander.Units.append(instance)
+		Global.SelectedCommander.captain_count += 1
 		Global.PlayerMoney -= Global.CaptainCost
 		Check_Troops()
 	

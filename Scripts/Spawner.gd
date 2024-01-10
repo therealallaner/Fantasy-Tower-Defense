@@ -11,7 +11,7 @@ extends Node2D
 
 var WaveNode = "Wave 1"
 var CurrentEnemies = []
-var gobbycount = 1
+var gobbycount = 3
 var sorccount = -4
 var g_spacer = false
 var s_spacer = false

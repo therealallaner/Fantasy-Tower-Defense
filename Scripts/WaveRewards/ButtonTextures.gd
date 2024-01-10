@@ -10,6 +10,7 @@ class_name ButtonTextures
 @export var tower: Texture
 @export var commander: Texture
 @export var captain: Texture
+@export var support: Texture
 
 var againdesc: String = "Reroll Wave Rewards"
 
@@ -28,3 +29,5 @@ var towerdesc: String = "Heal the Tower by 10 HP"
 var commanderdesc: String = "Increase Max Commander Troop Capacity"
 
 var captaindesc: String = "Unlocks the Captain Unit"
+
+var supportdesc: String = "Adds an extra Captain slot to your Commanders"

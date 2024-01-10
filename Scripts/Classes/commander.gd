@@ -5,6 +5,7 @@ class_name Commander
 var isselected = false
 var max_troop_command = Global.CommanderMax
 var max_captains = Global.CaptainMax
+var captain_count = 0
 var current_command = 0
 var mouse_hovering = false
 var Speed = 95
