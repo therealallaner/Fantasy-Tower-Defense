@@ -6,9 +6,11 @@ extends CanvasLayer
 @onready var Money = $GameStats/HBox/Amount
 @onready var Inf_B = $Stores/HumanStore/Infantry/Infantry
 @onready var Xbow_B = $Stores/HumanStore/Xbowman/Xbow
+@onready var Cap_B = $Stores/HumanStore/Captain/Captain
 @onready var Commander = preload("res://Scenes/Characters/commander.tscn")
 @onready var Infantry_Unit = preload("res://Scenes/Characters/infantry.tscn")
 @onready var Xbow_Unit = preload("res://Scenes/Characters/xbowman.tscn")
+@onready var Captain_Unit = preload("res://Scenes/Characters/captain.tscn")
 @onready var MaxSpace = $CommanderStats/MaxSpace
 @onready var CurrSpace = $CommanderStats/CurrSpace
 var CommanderRounds = [2,5,9,15,21]
@@ -27,6 +29,7 @@ func _ready():
 	WaveCount.text = "Wave: " + str(Global.CurrWave)
 	$Stores/HumanStore.visible = false
 	$CommanderStats.visible = false
+	Cap_B.visible = false
 
 func _process(delta):
 	Money.text = "$" + str(Global.PlayerMoney)
@@ -122,6 +125,19 @@ func _on_xbow_pressed():
 		Check_Troops()
 
 
+func _on_captain_pressed():
+	if Global.PlayerMoney >= Global.CaptainCost:
+		var instance = Captain_Unit.instantiate()
+		var targetpos = get_parent().get_node("TheTower/UnitSpawner").global_position
+		instance.position = targetpos
+		get_parent().add_child(instance)
+		Global.SelectedCommander.current_command += Global.CaptainHousing
+		Global.SelectedCommander.Units.append(instance)
+		Global.PlayerMoney -= Global.CaptainCost
+		Check_Troops()
+	
+	
+	
 func _on_pause_pressed():
 	Pause()
 
@@ -179,3 +195,6 @@ func on_before_load_game():
 func on_load_game(saved_data:SavedData):
 	HighScore = saved_data.highscore
 	Test()
+
+
+

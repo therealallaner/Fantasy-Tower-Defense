@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://ch8on8pvvbr56"]
+
+[ext_resource type="Script" path="res://Scripts/Classes/captain.gd" id="1_0cpxp"]
+[ext_resource type="Texture2D" uid="uid://u6febikgtx8w" path="res://Assets/My Sprites/low captain.png" id="1_xiq11"]
+[ext_resource type="Script" path="res://Scripts/Components/AttackRange.gd" id="2_2fn7q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yiopp"]
+size = Vector2(51, 31)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1rety"]
+radius = 40.0
+height = 110.0
+
+[node name="Captain" type="CharacterBody2D" groups=["Support"]]
+script = ExtResource("1_0cpxp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.223529, 0.223529, 0.223529, 1)
+texture = ExtResource("1_xiq11")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 15.5)
+shape = SubResource("RectangleShape2D_yiopp")
+
+[node name="AttackRange" type="Area2D" parent="."]
+script = ExtResource("2_2fn7q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
+position = Vector2(-1, 8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_1rety")
+
+[node name="Timer" type="Timer" parent="AttackRange"]
+one_shot = true
+
+[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
+[connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]
+[connection signal="timeout" from="AttackRange/Timer" to="." method="_on_timer_timeout"]

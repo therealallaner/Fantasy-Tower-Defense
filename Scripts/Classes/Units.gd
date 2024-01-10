@@ -96,4 +96,3 @@ func DrawAggro(body):
 	var aggro = percent - body.AggroWeight
 	if aggro < 10:
 		Target = body
-	print(percent," ",aggro," ",Target)

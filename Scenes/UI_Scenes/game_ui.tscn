@@ -1,12 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://mltrhj62rtfc"]
+[gd_scene load_steps=12 format=3 uid="uid://mltrhj62rtfc"]
 
 [ext_resource type="Script" path="res://Scripts/Game UI.gd" id="1_pvasg"]
 [ext_resource type="PackedScene" uid="uid://uampch6miue6" path="res://Scenes/UI_Scenes/wave_rewards.tscn" id="2_2islk"]
 [ext_resource type="Theme" uid="uid://cp2e2s82wiif8" path="res://Assets/UI/Themes/Augusta.tres" id="2_mttdy"]
 [ext_resource type="Texture2D" uid="uid://1bbvi1pcs3a5" path="res://Assets/My Sprites/LowMeleeUnit.png" id="3_2ul3f"]
 [ext_resource type="Texture2D" uid="uid://cs3r8cehshbxd" path="res://Assets/My Sprites/LowRangedUnit.png" id="4_d0j5u"]
+[ext_resource type="Texture2D" uid="uid://boyii614w17wt" path="res://Assets/TestTextures/CaptainButton.png" id="4_ned5h"]
 [ext_resource type="Theme" uid="uid://xxphpmqd0t6l" path="res://Assets/UI/Themes/GoudyMedieval.tres" id="5_g1t6w"]
 [ext_resource type="PackedScene" uid="uid://b1ro8yrwpjxe7" path="res://Scenes/Components/HealthBar.tscn" id="7_2n7v3"]
+[ext_resource type="Texture2D" uid="uid://u6febikgtx8w" path="res://Assets/My Sprites/low captain.png" id="7_5313c"]
 [ext_resource type="Script" path="res://SaverLoader.gd" id="8_d2lae"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qcrhb"]
@@ -17,6 +19,7 @@ script = ExtResource("1_pvasg")
 [node name="HealthBar" parent="." instance=ExtResource("7_2n7v3")]
 
 [node name="WaveRewards" parent="." instance=ExtResource("2_2islk")]
+captain = ExtResource("4_ned5h")
 
 [node name="GameStats" type="VBoxContainer" parent="."]
 anchors_preset = 5
@@ -125,6 +128,20 @@ HP: 30
 Housing Space: 1.5"
 texture_normal = ExtResource("4_d0j5u")
 stretch_mode = 1
+
+[node name="Captain" type="VBoxContainer" parent="Stores/HumanStore"]
+layout_mode = 2
+alignment = 2
+
+[node name="Captain" type="TextureButton" parent="Stores/HumanStore/Captain"]
+self_modulate = Color(0.223529, 0.223529, 0.223529, 1)
+layout_mode = 2
+tooltip_text = "Captain
+Cost: 125
+Damage: 5
+HP: 15
+Housing Space: -2"
+texture_normal = ExtResource("7_5313c")
 
 [node name="ElfStore" type="HBoxContainer" parent="Stores"]
 layout_mode = 0
@@ -260,12 +277,9 @@ text = "Highest Round: 0"
 script = ExtResource("8_d2lae")
 
 [connection signal="pressed" from="GameStats/WaveController" to="." method="_on_wave_controller_pressed"]
-[connection signal="mouse_entered" from="Stores/HumanStore/Infantry/Infantry" to="." method="_on_infantry_mouse_entered"]
-[connection signal="mouse_exited" from="Stores/HumanStore/Infantry/Infantry" to="." method="_on_infantry_mouse_exited"]
 [connection signal="pressed" from="Stores/HumanStore/Infantry/Infantry" to="." method="_on_infantry_pressed"]
-[connection signal="mouse_entered" from="Stores/HumanStore/Xbowman/Xbow" to="." method="_on_xbow_mouse_entered"]
-[connection signal="mouse_exited" from="Stores/HumanStore/Xbowman/Xbow" to="." method="_on_xbow_mouse_exited"]
 [connection signal="pressed" from="Stores/HumanStore/Xbowman/Xbow" to="." method="_on_xbow_pressed"]
+[connection signal="pressed" from="Stores/HumanStore/Captain/Captain" to="." method="_on_captain_pressed"]
 [connection signal="pressed" from="MenuButtons/Pause" to="." method="_on_pause_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="Controls/MarginContainer/VBoxContainer/OK" to="." method="_on_ok_pressed"]

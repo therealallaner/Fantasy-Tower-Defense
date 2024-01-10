@@ -24,6 +24,7 @@ var rewards = [
 	Again: again,
 	TowerHP: tower,
 	CommanderSpace: commander,
+	Captain_Unlock: captain,
 	}
 	
 @onready var ButtonToolTips = {
@@ -33,7 +34,8 @@ var rewards = [
 	Round_Cash: stonksdesc,
 	Again: againdesc,
 	TowerHP: towerdesc,
-	CommanderSpace: commanderdesc
+	CommanderSpace: commanderdesc,
+	Captain_Unlock: captaindesc,
 	}
 
 func _ready():
@@ -49,7 +51,6 @@ func Randomize_Rewards():
 		var randomIndex = randi() % rewards.size()
 		var randomItem = rewards[randomIndex]
 		if randomItem not in random_rewards:
-			print(randomItem, " ", isLast)
 			if randomItem == LastSelection:
 				if !isLast:
 					isLast = true
@@ -75,6 +76,13 @@ func Randomize_Rewards():
 	if Global.CurrWave == 7:
 		rewards.append(CommanderSpace)
 		
+	if Captain_Unlock not in rewards and Global.CurrWave > 1:
+		var rng = randf()
+		var percent = rng * 100
+		var newpercent = percent + (Global.CurrWave * 3)
+		print(percent," ",newpercent)
+		if newpercent > 85:
+			rewards.append(Captain_Unlock)
 	
 func Update_Tooltips():
 	ButtonToolTips[Again] = "Reroll Wave Rewards"
@@ -142,7 +150,6 @@ func Again():
 
 func TowerHP():
 	var tower = get_tree().get_nodes_in_group("Tower")
-	print(tower)
 	for t in tower:
 		t.HP += 10
 	LastSelection = TowerHP
@@ -155,8 +162,38 @@ func CommanderSpace():
 		c.max_troop_command = Global.CommanderMax
 	LastSelection = CommanderSpace
 	Close()
-		
+
+
+func Captain_Unlock():
+	get_parent().Cap_B.visible = true
+	#add new upgrades for the captain into the reward pool.
+	LastSelection = Captain_Unlock
+	print(rewards)
+	var index = rewards.find(Captain_Unlock)
+	rewards.remove_at(index)
+	print(rewards)
+	Close()
+	
+
+func Support_Upgrade():
+	Global.CaptainDmg += 1
+	var range = get_tree().get_nodes_in_group("Support")
+	for r in range:
+		r.attackDMG = Global.CaptainDmg
+	LastSelection = Support_Upgrade
+	Close()
+	
+	
+func Human_four():
+	pass
+	Close()
+	
+	
+func Xbow_Proj_Speed():
+	pass
+	Close()
+	
+	
 func Close():
 	self.hide()
 	WaveButton.disabled = false
-	print(LastSelection, " ", random_rewards)
