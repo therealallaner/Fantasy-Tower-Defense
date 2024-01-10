@@ -6,6 +6,8 @@ class_name Ranged_Unit
 @export var projectile: PackedScene
 @export var projectile_speed: int
 
+var enemylist = []
+
 
 func Ranged_Attack():
 	isattacking = true

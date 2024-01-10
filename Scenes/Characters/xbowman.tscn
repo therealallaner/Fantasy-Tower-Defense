@@ -30,7 +30,7 @@ shape = SubResource("CapsuleShape2D_w74di")
 
 [node name="AttackRange" type="Area2D" parent="."]
 collision_layer = 2
-collision_mask = 13
+collision_mask = 12
 script = ExtResource("3_p22ys")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]

@@ -27,3 +27,5 @@ func loser():
 	CommanderMax = 7
 	InfantryDmg = 5
 	XbowDmg = 8
+	CaptainMax = 1
+	WaveReward = false

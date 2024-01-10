@@ -14,7 +14,7 @@ extends CanvasLayer
 @onready var MaxSpace = $CommanderStats/MaxSpace
 @onready var CurrSpace = $CommanderStats/CurrSpace
 @onready var CapCount = $CommanderStats/CaptainCount
-var CommanderRounds = [3,7,11,15,21]
+var CommanderRounds = [4,7,11,15,21]
 var isPaused = false
 
 var Inf_Stats = []

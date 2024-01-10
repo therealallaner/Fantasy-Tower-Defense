@@ -21,7 +21,9 @@ func _on_attack_range_body_entered(body):
 		elif body.isenemy and Target == null:
 			Target = body
 			Ranged_Attack()
-
+		
+	if body.isenemy:
+		enemylist.append(body)
 
 func _on_attack_timer_timeout():
 	if Target != null:
@@ -29,4 +31,12 @@ func _on_attack_timer_timeout():
 
 
 func _on_attack_range_body_exited(body):
-	isattacking = false
+	if body == Target:
+		isattacking = false
+		if enemylist:
+			Target = enemylist[0]
+		
+	var index = enemylist.find(body)
+	enemylist.remove_at(index)
+		
+
