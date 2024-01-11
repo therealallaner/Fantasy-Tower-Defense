@@ -5,7 +5,7 @@ func _ready():
 	attackDMG = 2
 	HP = 12
 	Find_Target()
-
+	Speed = 75
 
 
 func _on_attack_range_body_entered(body):

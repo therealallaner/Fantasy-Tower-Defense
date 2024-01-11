@@ -3,7 +3,7 @@ class_name Sorcerer
 
 
 func _ready():
-	Speed = 150
+	Speed = 100
 	attackDMG = 3
 	HP = 9
 	Find_Target()

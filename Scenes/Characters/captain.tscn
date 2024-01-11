@@ -34,9 +34,9 @@ position = Vector2(-1, 8)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_1rety")
 
-[node name="Timer" type="Timer" parent="AttackRange"]
+[node name="AttackTimer" type="Timer" parent="AttackRange"]
 one_shot = true
 
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
 [connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]
-[connection signal="timeout" from="AttackRange/Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="AttackRange/AttackTimer" to="." method="_on_timer_timeout"]

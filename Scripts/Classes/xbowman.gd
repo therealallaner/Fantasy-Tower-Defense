@@ -4,7 +4,7 @@ class_name Xbow
 
 func _ready():
 	isenemy = false
-	Speed = 100
+	Speed = 90
 	attackDMG = Global.XbowDmg
 	HP = 30
 	AggroWeight = 15

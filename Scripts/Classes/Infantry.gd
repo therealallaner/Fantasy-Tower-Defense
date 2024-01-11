@@ -7,7 +7,7 @@ func _ready():
 	HP = 50
 	AggroWeight = 0
 	Find_Target()
-
+	Speed = 80
 
 
 func _on_attack_range_body_entered(body):

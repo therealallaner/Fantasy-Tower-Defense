@@ -17,6 +17,7 @@ var g_spacer = false
 var s_spacer = false
 var spawners = []
 var warnings = []
+var bossWaves = [6,12,18,24]
 
 func _ready():
 	for s in get_parent().get_node(WaveNode).get_children():
@@ -43,13 +44,22 @@ func Set_Spawns():
 					
 
 func Enemy_Spawn():
-	GobbySpawn()
+	GobbySpawn(gobbycount)
 	SorcSpawn()
 	gobbycount += 1
 	sorccount += 1
+	
+	if Global.CurrWave in bossWaves:
+		GobbySpawn(gobbycount/2)
+		SorcSpawn()
 
-func GobbySpawn():
-	for i in range(gobbycount):
+func GobbySpawn(count):
+	if Global.CurrWave in bossWaves:
+		gobbyspacer.wait_time = .35
+	else:
+		gobbyspacer.wait_time = 1
+		
+	for i in range(count):
 		var randomIndex = randi() % spawners.size()
 		var s = spawners[randomIndex]
 		var instance = Gobby.instantiate()
@@ -63,6 +73,11 @@ func GobbySpawn():
 			await gobbyspacer.timeout
 			
 func SorcSpawn():
+	if Global.CurrWave in bossWaves:
+		sorcspacer.wait_time = .15
+	else:
+		sorcspacer.wait_time = 1
+		
 	if sorccount > 0:
 		for i in range(sorccount):
 			var randomIndex = randi() % spawners.size()

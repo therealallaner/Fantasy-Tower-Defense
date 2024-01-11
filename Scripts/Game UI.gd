@@ -82,11 +82,11 @@ func WaveRewards():
 	$WaveRewards.Randomize_Rewards()
 	$WaveRewards.show()
 	if Global.CurrWave < 4:
-		MoneyExponent = 18
+		MoneyExponent = 25
 	elif Global.CurrWave < 10:
-		MoneyExponent = 12
+		MoneyExponent = 15
 	else:
-		MoneyExponent = 7
+		MoneyExponent = 10
 	
 	Global.PlayerMoney += MoneyExponent * Global.ExtraMoney + MoneyExponent * Global.CurrWave
 	Add_Commander()
