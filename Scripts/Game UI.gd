@@ -166,8 +166,8 @@ func _on_wave_controller_pressed():
 	Global.CurrWave += 1
 	get_parent().get_node("SpawnController").WaveNode = "Wave " + str(Global.CurrWave)
 	get_parent().get_node("SpawnController").Set_Spawns()
-	$Timer.start()
-
+	$GameStats/WaveTimer.start()
+	$GameStats/DangerTimer.start()
 
 
 func _on_timer_timeout():
@@ -212,3 +212,17 @@ func on_load_game(saved_data:SavedData):
 
 
 
+
+
+func _on_wave_timer_timeout():
+	print(get_parent().get_node("SpawnController").warnings)
+	get_parent().get_node("SpawnController").Enemy_Spawn()
+	for w in get_parent().get_node("SpawnController").warnings:
+		w.visible = false
+	$Timer.start()
+	$GameStats/DangerTimer.stop()
+
+
+func _on_danger_timer_timeout():
+	for w in get_parent().get_node("SpawnController").warnings:
+		w.visible = !w.visible

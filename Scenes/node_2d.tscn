@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dhbremyfpt2ig"]
+[gd_scene load_steps=8 format=3 uid="uid://dhbremyfpt2ig"]
 
 [ext_resource type="Script" path="res://Scripts/node_2d.gd" id="1_m7q4i"]
 [ext_resource type="PackedScene" uid="uid://db4r6xtfnmees" path="res://Scenes/Objects/tower.tscn" id="2_8533y"]
@@ -6,10 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://mltrhj62rtfc" path="res://Scenes/UI_Scenes/game_ui.tscn" id="4_j1k6x"]
 [ext_resource type="PackedScene" uid="uid://bvmdjp8ft6ch5" path="res://Scenes/Objects/spawner.tscn" id="5_bipg0"]
 [ext_resource type="PackedScene" uid="uid://bqs4a86blc0tl" path="res://Scenes/Objects/SpawnController.tscn" id="6_00qip"]
+[ext_resource type="PackedScene" uid="uid://dfnkv0k75o33p" path="res://Scenes/UI_Scenes/wave_spawn_warning.tscn" id="7_1nc04"]
 
 [node name="Node2D" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_m7q4i")
+metadata/_edit_vertical_guides_ = []
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
@@ -34,37 +36,87 @@ position = Vector2(967, 530)
 [node name="Spawner" parent="Wave 1" instance=ExtResource("5_bipg0")]
 position = Vector2(-142, 862)
 
+[node name="DangerArrows" parent="Wave 1/Spawner" groups=["Warning"] instance=ExtResource("7_1nc04")]
+visible = false
+position = Vector2(180, -18)
+rotation = 3.14159
+
 [node name="Spawner2" parent="Wave 1" instance=ExtResource("5_bipg0")]
 position = Vector2(216, 1168)
+
+[node name="DangerArrows" parent="Wave 1/Spawner2" groups=["Warning"] instance=ExtResource("7_1nc04")]
+visible = false
+position = Vector2(98, -136)
+rotation = 2.00509
 
 [node name="Wave 3" type="Node2D" parent="."]
 
 [node name="Spawner" parent="Wave 3" instance=ExtResource("5_bipg0")]
 position = Vector2(-97, 555)
 
+[node name="DangerArrows" parent="Wave 3/Spawner" groups=["Warning"] instance=ExtResource("7_1nc04")]
+visible = false
+position = Vector2(143, 0)
+rotation = -3.13383
+
 [node name="Spawner3" parent="Wave 3" instance=ExtResource("5_bipg0")]
 position = Vector2(-113, 228)
+
+[node name="DangerArrows" parent="Wave 3/Spawner3" instance=ExtResource("7_1nc04")]
+visible = false
+position = Vector2(170, 42)
+rotation = -2.88363
 
 [node name="Wave 5" type="Node2D" parent="."]
 
 [node name="Spawner" parent="Wave 5" instance=ExtResource("5_bipg0")]
 position = Vector2(2049, 986)
 
+[node name="DangerArrows" parent="Wave 5/Spawner" instance=ExtResource("7_1nc04")]
+visible = false
+position = Vector2(-180, -53)
+rotation = 0.254806
+
 [node name="Spawner3" parent="Wave 5" instance=ExtResource("5_bipg0")]
 position = Vector2(1591, 1191)
+
+[node name="DangerArrows" parent="Wave 5/Spawner3" instance=ExtResource("7_1nc04")]
+visible = false
+position = Vector2(-96, -170)
+rotation = 1.02898
 
 [node name="Wave 7" type="Node2D" parent="."]
 
 [node name="Spawner" parent="Wave 7" instance=ExtResource("5_bipg0")]
 position = Vector2(-106, 705)
 
+[node name="DangerArrows" parent="Wave 7/Spawner" instance=ExtResource("7_1nc04")]
+visible = false
+position = Vector2(170, -6)
+rotation = -3.13863
+
 [node name="Spawner3" parent="Wave 7" instance=ExtResource("5_bipg0")]
 position = Vector2(-97, 1099)
+
+[node name="DangerArrows" parent="Wave 7/Spawner3" instance=ExtResource("7_1nc04")]
+visible = false
+position = Vector2(126, -53)
+rotation = 2.50815
 
 [node name="Wave 8" type="Node2D" parent="."]
 
 [node name="Spawner" parent="Wave 8" instance=ExtResource("5_bipg0")]
 position = Vector2(469, -174)
 
+[node name="DangerArrows" parent="Wave 8/Spawner" instance=ExtResource("7_1nc04")]
+visible = false
+position = Vector2(94, 294)
+rotation = -1.90953
+
 [node name="Spawner3" parent="Wave 8" instance=ExtResource("5_bipg0")]
 position = Vector2(1998, 1166)
+
+[node name="DangerArrows" parent="Wave 8/Spawner3" instance=ExtResource("7_1nc04")]
+visible = false
+position = Vector2(-155, -155)
+rotation = 0.665876

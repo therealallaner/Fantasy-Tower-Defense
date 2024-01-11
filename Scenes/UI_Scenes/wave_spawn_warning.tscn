@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfnkv0k75o33p"]
+
+[ext_resource type="Texture2D" uid="uid://bb86wou1omfhv" path="res://Assets/My Sprites/Danger Arrows.png" id="1_mwpya"]
+
+[node name="DangerArrows" type="Sprite2D"]
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("1_mwpya")

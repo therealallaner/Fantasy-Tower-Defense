@@ -16,10 +16,13 @@ var sorccount = -4
 var g_spacer = false
 var s_spacer = false
 var spawners = []
+var warnings = []
 
 func _ready():
 	for s in get_parent().get_node(WaveNode).get_children():
 		spawners.append(s.global_position)
+		for w in s.get_children():
+			warnings.append(w)
 
 func _process(delta):
 	if CurrentEnemies:
@@ -34,6 +37,12 @@ func Set_Spawns():
 	if node:
 		for s in get_parent().get_node(WaveNode).get_children():
 			spawners.append(s.global_position)
+			for w in s.get_children():
+				if w not in warnings:
+					warnings.append(w)
+					
+
+func Enemy_Spawn():
 	GobbySpawn()
 	SorcSpawn()
 	gobbycount += 1

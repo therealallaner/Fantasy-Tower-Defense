@@ -38,6 +38,13 @@ theme = ExtResource("2_mttdy")
 theme_override_font_sizes/font_size = 75
 text = "Next Wave"
 
+[node name="WaveTimer" type="Timer" parent="GameStats"]
+wait_time = 3.0
+one_shot = true
+
+[node name="DangerTimer" type="Timer" parent="GameStats"]
+wait_time = 0.5
+
 [node name="HBox" type="HBoxContainer" parent="GameStats"]
 layout_mode = 2
 
@@ -88,9 +95,18 @@ theme_override_font_sizes/font_size = 25
 
 [node name="Stores" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -107.5
+offset_top = -76.0
+offset_right = 107.5
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme = ExtResource("2_mttdy")
 
 [node name="HumanStore" type="HBoxContainer" parent="Stores"]
@@ -100,12 +116,13 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 868.5
-offset_top = 910.0
-offset_right = 1011.5
-offset_bottom = 1009.0
+offset_left = -107.5
+offset_top = -64.0
+offset_right = 107.5
 grow_horizontal = 2
 grow_vertical = 0
+pivot_offset = Vector2(0, 68)
+alignment = 1
 
 [node name="Infantry" type="VBoxContainer" parent="Stores/HumanStore"]
 layout_mode = 2
@@ -151,14 +168,23 @@ Housing Space: -2"
 texture_normal = ExtResource("7_5313c")
 
 [node name="ElfStore" type="HBoxContainer" parent="Stores"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 2
+offset_top = 68.0
+offset_right = 215.0
+offset_bottom = 68.0
 
 [node name="DwarfStore" type="HBoxContainer" parent="Stores"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 2
+offset_top = 72.0
+offset_right = 215.0
+offset_bottom = 72.0
+
+[node name="Spacer" type="Control" parent="Stores"]
+layout_mode = 2
+anchors_preset = 0
+offset_top = 76.0
+offset_right = 215.0
+offset_bottom = 76.0
 
 [node name="MenuButtons" type="HBoxContainer" parent="."]
 anchors_preset = 1
@@ -284,6 +310,8 @@ text = "Highest Round: 0"
 script = ExtResource("8_d2lae")
 
 [connection signal="pressed" from="GameStats/WaveController" to="." method="_on_wave_controller_pressed"]
+[connection signal="timeout" from="GameStats/WaveTimer" to="." method="_on_wave_timer_timeout"]
+[connection signal="timeout" from="GameStats/DangerTimer" to="." method="_on_danger_timer_timeout"]
 [connection signal="pressed" from="Stores/HumanStore/Infantry/Infantry" to="." method="_on_infantry_pressed"]
 [connection signal="pressed" from="Stores/HumanStore/Xbowman/Xbow" to="." method="_on_xbow_pressed"]
 [connection signal="pressed" from="Stores/HumanStore/Captain/Captain" to="." method="_on_captain_pressed"]
