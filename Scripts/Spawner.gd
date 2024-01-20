@@ -50,7 +50,8 @@ func Enemy_Spawn():
 	sorccount += 1
 	
 	if Global.CurrWave in bossWaves:
-		GobbySpawn(gobbycount/2)
+		var exponent: int = Global.ExtraMoney
+		GobbySpawn(Global.CurrWave+gobbycount+exponent)
 		SorcSpawn()
 
 func GobbySpawn(count):

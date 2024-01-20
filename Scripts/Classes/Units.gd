@@ -56,8 +56,13 @@ func _physics_process(delta):
 		move_and_slide()
 		
 	elif isinCommandRange and !isattacking:
+		print(velocity.length())
+		if velocity.length() <= 20:
+			patrol_location = Find_Patrol()
+			
 		if !patrol:
 			patrol_location = Find_Patrol()
+			
 		else:
 			var Newpos = (patrol_location - position).normalized()
 			var distance = (patrol_location - position).length()
@@ -70,7 +75,11 @@ func _physics_process(delta):
 			else:
 				$Sprite2D.flip_h = true
 	
-		move_and_slide()
+		
+		
+			move_and_slide()
+			
+			
 		
 		
 func Find_Patrol():
