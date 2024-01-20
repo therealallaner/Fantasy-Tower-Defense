@@ -23,8 +23,10 @@ func _process(delta):
 	
 	if Global.SelectedCommander == self:
 		$Selected.visible = true
+		$AreaofCommandSprite.visible = true
 	else:
-		$Selected.visible = false	
+		$Selected.visible = false
+		$AreaofCommandSprite.visible = false
 	
 	if position == Target:
 		Target = null

@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bl3chbfd40ncq"]
+[gd_scene load_steps=8 format=3 uid="uid://bl3chbfd40ncq"]
 
 [ext_resource type="Script" path="res://Scripts/Classes/commander.gd" id="1_4r3id"]
 [ext_resource type="Texture2D" uid="uid://bv58vt22wws37" path="res://Assets/My Sprites/LowCommander.png" id="1_yloek"]
+[ext_resource type="Texture2D" uid="uid://dmd6hhe385fxn" path="res://Assets/My Sprites/circle.png" id="3_gagrk"]
 [ext_resource type="PackedScene" uid="uid://cv2gd7qiksr6n" path="res://Scenes/UI_Scenes/commander_stats.tscn" id="3_gmq1k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xt5r4"]
@@ -25,6 +26,14 @@ texture = ExtResource("1_yloek")
 [node name="Selected" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource("1_yloek")
+
+[node name="AreaofCommandSprite" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.376471, 0.792157, 1, 0.337255)
+z_index = -1
+z_as_relative = false
+scale = Vector2(0.445, 0.445)
+texture = ExtResource("3_gagrk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
