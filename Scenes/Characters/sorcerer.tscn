@@ -1,9 +1,66 @@
-[gd_scene load_steps=7 format=3 uid="uid://b8yaa01m7dtw1"]
+[gd_scene load_steps=12 format=3 uid="uid://b8yaa01m7dtw1"]
 
 [ext_resource type="Script" path="res://Scripts/Classes/Sorcerer.gd" id="1_6o6ak"]
 [ext_resource type="Texture2D" uid="uid://cs3r8cehshbxd" path="res://Assets/My Sprites/LowRangedUnit.png" id="2_76nyj"]
 [ext_resource type="PackedScene" uid="uid://ci2u2yr134vu8" path="res://Scenes/Objects/SorcSpell.tscn" id="2_ec4il"]
 [ext_resource type="Script" path="res://Scripts/Components/AttackRange.gd" id="3_874on"]
+[ext_resource type="Texture2D" uid="uid://cvad11ta3enhi" path="res://Assets/Test Animation Sprites/Tiny Swords (Update 010)/Factions/Goblins/Troops/TNT/Purple/TNT_Purple.png" id="4_jrspx"]
+
+[sub_resource type="Animation" id="Animation_6xucg"]
+resource_name = "Walking"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [7, 8, 9, 10, 11, 12]
+}
+
+[sub_resource type="Animation" id="Animation_j3ix6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+
+[sub_resource type="Animation" id="Animation_eth5r"]
+resource_name = "Attack"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [14, 15, 16, 17, 18, 19, 20]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2ogrg"]
+_data = {
+"Attack": SubResource("Animation_eth5r"),
+"RESET": SubResource("Animation_j3ix6"),
+"Walking": SubResource("Animation_6xucg")
+}
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w74di"]
 radius = 15.0
@@ -21,8 +78,22 @@ projectile = ExtResource("2_ec4il")
 projectile_speed = 250
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(0.301961, 0, 0.584314, 1)
 texture = ExtResource("2_76nyj")
+
+[node name="SpriteTest" type="Sprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("4_jrspx")
+hframes = 7
+vframes = 3
+frame = 7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../SpriteTest")
+libraries = {
+"": SubResource("AnimationLibrary_2ogrg")
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_w74di")
@@ -37,8 +108,14 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_65rf6")
 
 [node name="AttackTimer" type="Timer" parent="AttackRange"]
+wait_time = 0.7
+one_shot = true
+
+[node name="SpellTimer" type="Timer" parent="AttackRange"]
+wait_time = 0.2
 one_shot = true
 
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
 [connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]
 [connection signal="timeout" from="AttackRange/AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="AttackRange/SpellTimer" to="." method="_on_spell_timer_timeout"]

@@ -8,6 +8,9 @@ func _ready():
 	AggroWeight = -15
 	Find_Target()
 
+func _process(delta):
+	if isattacking:
+		CharAnim.play("Attack")
 
 func _on_attack_range_body_entered(body):
 	if canattack:

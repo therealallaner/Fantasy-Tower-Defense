@@ -20,7 +20,16 @@ func _on_attack_range_body_entered(body):
 			pass
 		elif body.isenemy and Target == null:
 			Target = body
-			Ranged_Attack()
+			$AttackRange/ArrowTimer.start()
+			CharAnim.play("AttackR")
+			isattacking = true
+			canattack = false
+			$AttackRange/AttackTimer.start()
+			
+			if Target.position.x > position.x:
+				$SpriteTest.flip_h = false
+			else:
+				$SpriteTest.flip_h = true
 		
 	if body.isenemy:
 		enemylist.append(body)
@@ -30,8 +39,16 @@ func _on_attack_timer_timeout():
 	canattack = true
 	
 	if Target != null:
-		Ranged_Attack()
-
+		$AttackRange/ArrowTimer.start()
+		CharAnim.play("AttackR")
+		isattacking = true
+		canattack = false
+		$AttackRange/AttackTimer.start()
+		
+		if Target.position.x > position.x:
+			$SpriteTest.flip_h = false
+		else:
+			$SpriteTest.flip_h = true
 
 func _on_attack_range_body_exited(body):
 	var index = enemylist.find(body)
@@ -42,3 +59,8 @@ func _on_attack_range_body_exited(body):
 			Target = enemylist[0]
 	
 
+
+
+func _on_arrow_timer_timeout():
+	if Target != null:
+		Ranged_Attack()
