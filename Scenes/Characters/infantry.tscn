@@ -1,8 +1,65 @@
-[gd_scene load_steps=6 format=3 uid="uid://lr2i5b8ldk54"]
+[gd_scene load_steps=11 format=3 uid="uid://lr2i5b8ldk54"]
 
 [ext_resource type="Script" path="res://Scripts/Classes/Infantry.gd" id="1_ubutd"]
 [ext_resource type="Texture2D" uid="uid://1bbvi1pcs3a5" path="res://Assets/My Sprites/LowMeleeUnit.png" id="2_28qhe"]
 [ext_resource type="Script" path="res://Scripts/Components/AttackRange.gd" id="3_7ntuh"]
+[ext_resource type="Texture2D" uid="uid://bwhwl2ui2ef35" path="res://Assets/Test Animation Sprites/Tiny Swords (Update 010)/Factions/Knights/Troops/Warrior/Blue/Warrior_Blue.png" id="3_xwo5c"]
+
+[sub_resource type="Animation" id="Animation_ksqbd"]
+resource_name = "Attack"
+length = 1.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteTest:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 23]
+}
+
+[sub_resource type="Animation" id="Animation_yqogy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteTest:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+
+[sub_resource type="Animation" id="Animation_ovgbi"]
+resource_name = "Walking"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteTest:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 9, 10, 11]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jq5nh"]
+_data = {
+"Attack": SubResource("Animation_ksqbd"),
+"RESET": SubResource("Animation_yqogy"),
+"Walking": SubResource("Animation_ovgbi")
+}
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xgo0f"]
 radius = 9.0
@@ -17,8 +74,22 @@ collision_mask = 13
 script = ExtResource("1_ubutd")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(0.521569, 0.521569, 0.521569, 1)
 texture = ExtResource("2_28qhe")
+
+[node name="SpriteTest" type="Sprite2D" parent="."]
+position = Vector2(0, 5)
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("3_xwo5c")
+hframes = 6
+vframes = 8
+frame = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jq5nh")
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 13)

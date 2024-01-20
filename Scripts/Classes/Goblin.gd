@@ -1,11 +1,14 @@
 extends Melee_Unit
 class_name Goblin
 
+
+
 func _ready():
 	attackDMG = 2
 	HP = 12
 	Find_Target()
 	Speed = 75
+	
 
 
 func _on_attack_range_body_entered(body):
@@ -13,6 +16,8 @@ func _on_attack_range_body_entered(body):
 		DrawAggro(body)
 	if body == Target:
 		Melee_Attack()
+		CharAnim.play("Attack")
+		
 
 func _on_attack_timer_timeout():
 	if Target != null:

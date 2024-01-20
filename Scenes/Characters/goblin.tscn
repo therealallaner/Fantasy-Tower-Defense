@@ -1,8 +1,65 @@
-[gd_scene load_steps=6 format=3 uid="uid://boyn2rfrxnuh"]
+[gd_scene load_steps=11 format=3 uid="uid://boyn2rfrxnuh"]
 
 [ext_resource type="Script" path="res://Scripts/Classes/Goblin.gd" id="1_m3jd8"]
 [ext_resource type="Texture2D" uid="uid://1bbvi1pcs3a5" path="res://Assets/My Sprites/LowMeleeUnit.png" id="2_c3c30"]
+[ext_resource type="Texture2D" uid="uid://byvpatl2daog1" path="res://Assets/Test Animation Sprites/Tiny Swords (Update 010)/Factions/Goblins/Troops/Torch/Red/Torch_Red.png" id="3_b7hb0"]
 [ext_resource type="Script" path="res://Scripts/Components/AttackRange.gd" id="3_nd61b"]
+
+[sub_resource type="Animation" id="Animation_miljn"]
+resource_name = "Attack"
+length = 0.55
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteTest:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [14, 15, 16, 17, 18, 19]
+}
+
+[sub_resource type="Animation" id="Animation_qt4fa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteTest:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+
+[sub_resource type="Animation" id="Animation_7p817"]
+resource_name = "Walking"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteTest:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [7, 8, 9, 10, 11, 12]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dx8yq"]
+_data = {
+"Attack": SubResource("Animation_miljn"),
+"RESET": SubResource("Animation_qt4fa"),
+"Walking": SubResource("Animation_7p817")
+}
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xgo0f"]
 radius = 9.0
@@ -17,8 +74,22 @@ collision_mask = 3
 script = ExtResource("1_m3jd8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(0, 0.431373, 0, 1)
 texture = ExtResource("2_c3c30")
+
+[node name="SpriteTest" type="Sprite2D" parent="."]
+position = Vector2(0, 7)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_b7hb0")
+hframes = 7
+vframes = 5
+frame = 7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dx8yq")
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 6)

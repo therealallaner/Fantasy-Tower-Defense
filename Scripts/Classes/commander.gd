@@ -12,6 +12,9 @@ var Speed = 95
 var Target = null
 var Targetdis: float
 var Units = []
+var isMoving = false
+
+@onready var CharAnim = $AnimationPlayer
 
 func _process(delta):
 	if Input.is_action_just_pressed("Left-Click") and mouse_hovering:
@@ -22,20 +25,25 @@ func _process(delta):
 			Target = get_global_mouse_position()
 	
 	if Global.SelectedCommander == self:
-		$Selected.visible = true
 		$AreaofCommandSprite.visible = true
 	else:
-		$Selected.visible = false
 		$AreaofCommandSprite.visible = false
 	
 	if position == Target:
 		Target = null
 		
+	if isMoving:
+		CharAnim.play("Walking")
+	else:
+		CharAnim.play("Idle")
+		
 func _physics_process(delta):
 	if Target:
+		isMoving = true
 		var Newpos = (Target - position).normalized()
 		var distance = (Target - position).length()
 		if distance < 2:
+			isMoving = false
 			return
 		velocity = Newpos * Speed
 		var Characterpos = position

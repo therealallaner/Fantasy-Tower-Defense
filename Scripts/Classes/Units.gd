@@ -15,6 +15,8 @@ var Target = null
 var Command = null
 var AggroWeight:int = 0
 
+@onready var CharAnim = $AnimationPlayer
+
 func Test():
 	print("Yur mum")
 
@@ -25,9 +27,11 @@ func _process(delta):
 			var EnemyList = get_parent().get_node("SpawnController").CurrentEnemies
 			EnemyList.remove_at(EnemyList.find(self))
 		queue_free()
+		
 
 func _physics_process(delta):
 	if Target != null and !isattacking:
+		CharAnim.play("Walking")
 		var Targetpos = Target.position
 		var Newpos = (Targetpos - position).normalized()
 		var distance = (Targetpos - position).length()
@@ -37,12 +41,15 @@ func _physics_process(delta):
 		var Characterpos = position
 		if Targetpos.x > Characterpos.x:
 			$Sprite2D.flip_h = false
+			$SpriteTest.flip_h = false
 		else:
 			$Sprite2D.flip_h = true
+			$SpriteTest.flip_h = true
 			
 		move_and_slide()
 		
 	elif Command != null and !isinCommandRange:
+		CharAnim.play("Walking")
 		var Targetpos = Command.position
 		var Newpos = (Targetpos - position).normalized()
 		var distance = (Targetpos - position).length()
@@ -50,12 +57,16 @@ func _physics_process(delta):
 		var Characterpos = position
 		if Targetpos.x > Characterpos.x:
 			$Sprite2D.flip_h = false
+			$SpriteTest.flip_h = false
 		else:
 			$Sprite2D.flip_h = true
+			$SpriteTest.flip_h = true
 	
 		move_and_slide()
 		
 	elif isinCommandRange and !isattacking:
+		CharAnim.play("Walking")
+		
 		if velocity.length() <= 20:
 			patrol_location = Find_Patrol()
 			
@@ -71,8 +82,10 @@ func _physics_process(delta):
 			var Characterpos = position
 			if patrol_location.x > Characterpos.x:
 				$Sprite2D.flip_h = false
+				$SpriteTest.flip_h = false
 			else:
 				$Sprite2D.flip_h = true
+				$SpriteTest.flip_h = true
 	
 		
 		

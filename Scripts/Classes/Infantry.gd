@@ -9,6 +9,9 @@ func _ready():
 	Find_Target()
 	Speed = 80
 
+func _process(delta):
+	if isattacking:
+		CharAnim.play("Attack")
 
 func _on_attack_range_body_entered(body):
 	if canattack:
@@ -26,6 +29,7 @@ func _on_attack_timer_timeout():
 	isattacking = false
 	if Target != null:
 		Melee_Attack()
+		print(attackDMG," ",Target)
 
 
 func _on_attack_range_body_exited(body):

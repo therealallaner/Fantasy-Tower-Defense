@@ -1,9 +1,66 @@
-[gd_scene load_steps=8 format=3 uid="uid://bl3chbfd40ncq"]
+[gd_scene load_steps=13 format=3 uid="uid://bl3chbfd40ncq"]
 
 [ext_resource type="Script" path="res://Scripts/Classes/commander.gd" id="1_4r3id"]
 [ext_resource type="Texture2D" uid="uid://bv58vt22wws37" path="res://Assets/My Sprites/LowCommander.png" id="1_yloek"]
+[ext_resource type="Texture2D" uid="uid://20v3g4xogrf8" path="res://Assets/Test Animation Sprites/Tiny Swords (Update 010)/Factions/Knights/Troops/Pawn/Blue/Pawn_Blue.png" id="2_o1qru"]
 [ext_resource type="Texture2D" uid="uid://dmd6hhe385fxn" path="res://Assets/My Sprites/circle.png" id="3_gagrk"]
 [ext_resource type="PackedScene" uid="uid://cv2gd7qiksr6n" path="res://Scenes/UI_Scenes/commander_stats.tscn" id="3_gmq1k"]
+
+[sub_resource type="Animation" id="Animation_i34gg"]
+resource_name = "Idle"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_u1xan"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_s2xmy"]
+resource_name = "Walking"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 9, 10, 11]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vappj"]
+_data = {
+"Idle": SubResource("Animation_i34gg"),
+"RESET": SubResource("Animation_u1xan"),
+"Walking": SubResource("Animation_s2xmy")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xt5r4"]
 size = Vector2(23, 16)
@@ -20,8 +77,15 @@ collision_layer = 0
 script = ExtResource("1_4r3id")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(0, 0, 0, 1)
-texture = ExtResource("1_yloek")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_o1qru")
+hframes = 6
+vframes = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vappj")
+}
 
 [node name="Selected" type="Sprite2D" parent="."]
 visible = false
