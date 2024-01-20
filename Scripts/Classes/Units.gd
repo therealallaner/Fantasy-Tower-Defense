@@ -56,7 +56,6 @@ func _physics_process(delta):
 		move_and_slide()
 		
 	elif isinCommandRange and !isattacking:
-		print(velocity.length())
 		if velocity.length() <= 20:
 			patrol_location = Find_Patrol()
 			

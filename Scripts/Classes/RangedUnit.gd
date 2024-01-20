@@ -11,6 +11,7 @@ var enemylist = []
 
 func Ranged_Attack():
 	isattacking = true
+	canattack = false
 	var instancedir = self.global_position.direction_to(Target.global_position)
 	var instance = projectile.instantiate()
 	add_child(instance)

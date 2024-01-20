@@ -26,17 +26,19 @@ func _on_attack_range_body_entered(body):
 		enemylist.append(body)
 
 func _on_attack_timer_timeout():
+	
+	canattack = true
+	
 	if Target != null:
 		Ranged_Attack()
 
 
 func _on_attack_range_body_exited(body):
+	var index = enemylist.find(body)
+	enemylist.remove_at(index)
 	if body == Target:
 		isattacking = false
 		if enemylist:
 			Target = enemylist[0]
-		
-	var index = enemylist.find(body)
-	enemylist.remove_at(index)
-		
+	
 
