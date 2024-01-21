@@ -17,6 +17,7 @@
 script = ExtResource("1_pvasg")
 
 [node name="HealthBar" parent="." instance=ExtResource("7_2n7v3")]
+max_value = 250.0
 
 [node name="WaveRewards" parent="." instance=ExtResource("2_2islk")]
 captain = ExtResource("4_ned5h")

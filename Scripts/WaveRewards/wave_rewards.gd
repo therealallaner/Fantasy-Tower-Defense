@@ -97,9 +97,10 @@ func Randomize_Rewards():
 func Update_Tooltips():
 	ButtonToolTips[Again] = "Reroll Wave Rewards"
 
-	ButtonToolTips[Bag_o_Gold] = "Gain $25"
+	Update_GoldExponent()
+	ButtonToolTips[Bag_o_Gold] = "Gain $" + str(GoldExponent)
 
-	ButtonToolTips[Round_Cash] = "Increase End of Round Income"
+	ButtonToolTips[Round_Cash] = "Increases End of Round Income for All Future Rounds"
 
 	ButtonToolTips[Melee_Upgrade] = "Increase Melee Unit damage by 1
 Current damage is: " + str(Global.InfantryDmg)
@@ -108,6 +109,15 @@ Current damage is: " + str(Global.InfantryDmg)
 Current damage is: " + str(Global.XbowDmg)
 	
 
+func Update_GoldExponent():
+	if Global.CurrWave == 1:
+		pass
+	elif Global.CurrWave < 3:
+		GoldExponent = 25 + (Global.ExtraMoney)
+	elif Global.CurrWave < 7:
+		GoldExponent = 25 + (Global.ExtraMoney * 2)
+	else:
+		GoldExponent = 25 + (Global.ExtraMoney * 2) + Global.CurrWave
 
 func _on_test_2_pressed():
 	self.hide()
@@ -129,7 +139,9 @@ func _on_option_3_pressed():
 # Wave Upgrades:
 	
 func Bag_o_Gold():
-	Global.PlayerMoney += 25
+	
+		
+	Global.PlayerMoney += GoldExponent
 	LastSelection = Bag_o_Gold
 	Close()
 	

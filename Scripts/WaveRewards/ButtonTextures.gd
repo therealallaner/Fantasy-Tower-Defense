@@ -2,6 +2,8 @@ extends PanelContainer
 class_name ButtonTextures
 
 
+var GoldExponent: int = 25
+
 @export var again: Texture
 @export var bagogold: Texture
 @export var stonks: Texture
@@ -14,7 +16,7 @@ class_name ButtonTextures
 
 var againdesc: String = "Reroll Wave Rewards"
 
-var bagogolddesc: String = "Gain $25"
+var bagogolddesc: String = "Gain $" + str(GoldExponent)
 
 var stonksdesc: String = "Increase End of Round Income"
 

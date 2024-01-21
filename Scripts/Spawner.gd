@@ -66,6 +66,8 @@ func GobbySpawn(count):
 		var instance = Gobby.instantiate()
 		var targetpos = s
 		instance.position = targetpos
+		instance.attackDMG = Gobby_Damage_Upgrade()
+		instance.HP = Gobby_HP_Upgrade()
 		get_parent().add_child(instance)
 		CurrentEnemies.append(instance)
 		gobbyspacer.start()
@@ -94,6 +96,30 @@ func SorcSpawn():
 				await sorcspacer.timeout
 
 
+func Gobby_Damage_Upgrade():
+	if Global.CurrWave <= 6:
+		return 2
+	elif Global.CurrWave <=10:
+		return 3
+	elif Global.CurrWave <= 15:
+		return 5
+	elif Global.CurrWave <= 23:
+		return 7
+	elif Global.CurrWave <= 27:
+		return 8
+		
+		
+func Gobby_HP_Upgrade():
+	if Global.CurrWave <= 6:
+		return 12
+	elif Global.CurrWave <=10:
+		return 15
+	elif Global.CurrWave <= 15:
+		return 18
+	elif Global.CurrWave <= 23:
+		return 24
+	elif Global.CurrWave <= 27:
+		return 27
 
 
 func _on_goblin_spacer_timeout():

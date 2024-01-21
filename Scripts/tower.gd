@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-var HP = 100
+var HP = 250
 
 
 func _process(delta):
