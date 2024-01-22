@@ -46,7 +46,6 @@ func _process(delta):
 	WaveCount.text = "Wave: " + str(Global.CurrWave)
 	if Global.WaveisActive:
 		WaveButton.text = ""
-		WaveButton.disabled = true
 	else:
 		WaveButton.text = "Start"
 		
@@ -198,6 +197,7 @@ func _on_quit_pressed():
 
 
 func _on_wave_controller_pressed():
+	WaveButton.disabled = true
 	Global.CurrWave += 1
 	get_parent().get_node("SpawnController").WaveNode = "Wave " + str(Global.CurrWave)
 	get_parent().get_node("SpawnController").Set_Spawns()
