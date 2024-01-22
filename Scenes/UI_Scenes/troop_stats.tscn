@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=3 uid="uid://4rb7extlypv"]
+
+[ext_resource type="Script" path="res://TroopStats.gd" id="1_4pruw"]
+[ext_resource type="Texture2D" uid="uid://jhmiwpifw7fc" path="res://Assets/Fantasy Wooden GUI  Free/Fantasy Wooden GUI  Free/PNG/UI board Small  stone.png" id="2_ds60x"]
+[ext_resource type="Texture2D" uid="uid://1bbvi1pcs3a5" path="res://Assets/My Sprites/LowMeleeUnit.png" id="3_ntpqa"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ekuty"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+texture = ExtResource("2_ds60x")
+
+[node name="TroopStats" type="Control"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4pruw")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(190, 120)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_ekuty")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="TroopName" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Infantry"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TroopSprite" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_ntpqa")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HP" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "HP/HPMax"
+horizontal_alignment = 2
+
+[node name="Damage" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "AttackDMG"
+horizontal_alignment = 2
+
+[connection signal="mouse_entered" from="PanelContainer" to="." method="_on_panel_container_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer" to="." method="_on_panel_container_mouse_exited"]

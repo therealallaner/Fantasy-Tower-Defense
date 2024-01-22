@@ -1,6 +1,8 @@
 extends Melee_Unit
 class_name Infantry
 
+@onready var second_sprite = $Sprite2D
+
 func _ready():
 	isenemy = false
 	attackDMG = Global.InfantryDmg
@@ -8,6 +10,7 @@ func _ready():
 	AggroWeight = 0
 	Find_Target()
 	Speed = 80
+	sprite.material.set_shader_parameter("line_thickness", 0.0)
 
 func _process(delta):
 	if isattacking:

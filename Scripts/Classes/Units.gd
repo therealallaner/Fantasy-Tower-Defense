@@ -15,6 +15,7 @@ var Target = null
 var Command = null
 var AggroWeight:int = 0
 
+@onready var sprite = $SpriteTest
 @onready var CharAnim = $AnimationPlayer
 
 func Test():
@@ -26,6 +27,10 @@ func _process(delta):
 		if isenemy:
 			var EnemyList = get_parent().get_node("SpawnController").CurrentEnemies
 			EnemyList.remove_at(EnemyList.find(self))
+		else:
+			var index = Command.Units.find(self)
+			Command.Units.remove_at(index)
+			
 		queue_free()
 		
 

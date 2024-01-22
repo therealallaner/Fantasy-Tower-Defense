@@ -1,51 +1,94 @@
-[gd_scene load_steps=5 format=3 uid="uid://cv2gd7qiksr6n"]
+[gd_scene load_steps=7 format=3 uid="uid://cv2gd7qiksr6n"]
 
 [ext_resource type="Script" path="res://Scripts/UIStuff/CommanderStats.gd" id="1_k5fmi"]
-[ext_resource type="Theme" uid="uid://cp2e2s82wiif8" path="res://Assets/UI/Themes/Augusta.tres" id="2_d7j7s"]
-[ext_resource type="Texture2D" uid="uid://j8vronhsgye3" path="res://Assets/My Sprites/LowSorc.png" id="2_x7ia4"]
-[ext_resource type="PackedScene" uid="uid://dqj2ddivrw3lw" path="res://Scenes/UI_Scenes/troop_slot.tscn" id="3_c5r5o"]
+[ext_resource type="Theme" uid="uid://cp2e2s82wiif8" path="res://Assets/UI/Themes/Augusta.tres" id="2_ewkwe"]
+[ext_resource type="Texture2D" uid="uid://dcqtu33tgmkqb" path="res://Assets/Test Animation Sprites/Tiny Swords (Update 010)/UI/Buttons/Button_Blue_9Slides_Pressed.png" id="2_mcixi"]
+[ext_resource type="FontFile" uid="uid://c4wijtv74mvw0" path="res://Assets/Fantasy Wooden GUI  Free/Fantasy Wooden GUI  Free/Font/Fonts/buddychampionrotate.ttf" id="2_og6d2"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lksjl"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6hy4c"]
+texture = ExtResource("2_mcixi")
+texture_margin_left = 20.0
+texture_margin_top = 20.0
+texture_margin_right = 20.0
+texture_margin_bottom = 25.0
 
 [node name="CommanderStats" type="CanvasLayer"]
 layer = 0
 script = ExtResource("1_k5fmi")
-pic = ExtResource("2_x7ia4")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -103.0
 grow_horizontal = 0
 grow_vertical = 2
-theme = ExtResource("2_d7j7s")
 
-[node name="Open_Close" type="Button" parent="HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -228.5
+offset_top = -69.5
+offset_right = 228.5
+offset_bottom = 69.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="spacer" type="Control" parent="Control/HBoxContainer"]
+custom_minimum_size = Vector2(190, 0)
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_lksjl")
+
+[node name="Button" type="Button" parent="Control/HBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("2_og6d2")
+theme_override_font_sizes/font_size = 75
 text = "<"
+icon_alignment = 1
 
-[node name="MainUI" type="PanelContainer" parent="HBoxContainer"]
+[node name="Control" type="Control" parent="Control/HBoxContainer"]
+custom_minimum_size = Vector2(5, 0)
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MainUI"]
+[node name="Panel" type="PanelContainer" parent="Control/HBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 150
-theme_override_constants/margin_top = 100
-theme_override_constants/margin_right = 150
-theme_override_constants/margin_bottom = 100
+theme_override_styles/panel = SubResource("StyleBoxTexture_6hy4c")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MainUI/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/HBoxContainer/Panel"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer/MainUI/MarginContainer/VBoxContainer"]
+[node name="CurrSpace" type="Label" parent="Control/HBoxContainer/Panel/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 40
-text = "Max Troop Space: 7
-Current Troops: 0"
+theme = ExtResource("2_ewkwe")
+theme_override_font_sizes/font_size = 25
+text = "Current Troops: 0"
 
-[node name="TroopSlot" parent="HBoxContainer/MainUI/MarginContainer/VBoxContainer" instance=ExtResource("3_c5r5o")]
+[node name="CaptainCount" type="Label" parent="Control/HBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_ewkwe")
+theme_override_font_sizes/font_size = 25
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/Panel/VBoxContainer"]
 layout_mode = 2
 
-[connection signal="pressed" from="HBoxContainer/Open_Close" to="." method="_on_open_close_pressed"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/HBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="TroopsList" type="VBoxContainer" parent="Control/HBoxContainer/Panel/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="Control/HBoxContainer/PanelContainer/Button" to="." method="_on_button_pressed"]

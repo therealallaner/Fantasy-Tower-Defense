@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://cv2gd7qiksr6n"]
+
+[ext_resource type="Script" path="res://Scripts/UIStuff/CommanderStats.gd" id="1_k5fmi"]
+[ext_resource type="Texture2D" uid="uid://cmd3kt13daen3" path="res://Assets/Test Animation Sprites/Tiny Swords (Update 010)/UI/Banners/Carved_9Slides.png" id="2_nt1um"]
+
+[node name="CommanderStats" type="CanvasLayer"]
+layer = 0
+script = ExtResource("1_k5fmi")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -194.0
+offset_top = -96.0
+offset_right = 194.0
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="spacer" type="Control" parent="Control/HBoxContainer"]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "<"
+
+[node name="TextureRect" type="TextureRect" parent="Control/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_nt1um")
+
+[connection signal="pressed" from="Control/HBoxContainer/Button" to="." method="_on_button_pressed"]

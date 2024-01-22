@@ -93,17 +93,17 @@ script = ExtResource("1_5adh0")
 projectile = ExtResource("2_hfh1u")
 projectile_speed = 350
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-modulate = Color(0.282353, 0.105882, 0, 1)
-texture = ExtResource("2_5ig6h")
-
 [node name="SpriteTest" type="Sprite2D" parent="."]
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("4_1ysky")
 hframes = 8
 vframes = 7
 frame = 8
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.282353, 0.105882, 0, 1)
+texture = ExtResource("2_5ig6h")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

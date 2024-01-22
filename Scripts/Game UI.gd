@@ -1,5 +1,8 @@
 extends CanvasLayer
 
+@export var infantry_pic: Texture
+@export var xbow_pic: Texture
+@export var cap_pic: Texture
 
 @onready var WaveButton = $GameStats/WaveController
 @onready var WaveCount = $GameStats/HBox/WaveCount
@@ -11,12 +14,18 @@ extends CanvasLayer
 @onready var Infantry_Unit = preload("res://Scenes/Characters/infantry.tscn")
 @onready var Xbow_Unit = preload("res://Scenes/Characters/xbowman.tscn")
 @onready var Captain_Unit = preload("res://Scenes/Characters/captain.tscn")
+@onready var Troop_Stats = preload("res://Scenes/UI_Scenes/troop_stats.tscn")
 @onready var MaxSpace = $CommanderStats/MaxSpace
-@onready var CurrSpace = $CommanderStats/CurrSpace
-@onready var CapCount = $CommanderStats/CaptainCount
+@onready var CurrSpace = $CommanderStats.CurrSpace
+@onready var CapCount = $CommanderStats.CapCount
 var CommanderRounds = [4,7,11,15,21]
 var isPaused = false
 
+var sprites = {
+	'Infantry': infantry_pic,
+	'Xbow': xbow_pic,
+	'Captain': cap_pic,
+}
 var Inf_Stats = []
 var Xbow_Stats = []
 var Cap_Stats = []
@@ -33,7 +42,7 @@ func _ready():
 	WaveButton.text = "Start"
 	WaveCount.text = "Wave: " + str(Global.CurrWave)
 	$Stores/HumanStore.visible = false
-	$CommanderStats.visible = false
+#	$CommanderStats.visible = false
 	Cap_B.visible = false
 	CapCount.visible = false
 
@@ -58,8 +67,22 @@ func Check_Troops():
 	var space = max - curr
 	CurrSpace.text = "Current Troops: " + str(curr) + "/" + str(max)
 	CapCount.text = "Captain Count: " + str(cap) + "/" + str(capmax)
+	Troop_Stat_Blocks()
 	Button_Management(space)
 		
+		
+func Troop_Stat_Blocks():
+	var t = $CommanderStats.troop_menu.get_children()
+	if t != null:
+		for s in t:
+			$CommanderStats.troop_menu.remove_child(s)
+	for u in Global.SelectedCommander.Units:
+		var statblock = Troop_Stats.instantiate()
+		$CommanderStats.troop_menu.add_child(statblock)
+		var index = Global.SelectedCommander.Units.find(u)
+		statblock.HP.text = "HP: " + str(u.HP) + "/50"
+		statblock.dmg.text = "Damage: " + str(u.attackDMG)
+	
 func Button_Management(space):
 	if space < Global.InfantryHousing:
 		Inf_B.disabled = true
@@ -113,6 +136,7 @@ func Pause():
 		isPaused = true
 		Engine.time_scale = 0
 		
+		
 
 func _on_infantry_pressed():
 	if Global.PlayerMoney >= Global.InfantryCost:
@@ -123,6 +147,8 @@ func _on_infantry_pressed():
 		Global.SelectedCommander.current_command += Global.InfantryHousing
 		Global.SelectedCommander.Units.append(instance)
 		Global.PlayerMoney -= Global.InfantryCost
+		var statblock = Troop_Stats.instantiate()
+		$CommanderStats.troop_menu.add_child(statblock)
 		Check_Troops()
 
 
@@ -135,6 +161,8 @@ func _on_xbow_pressed():
 		Global.SelectedCommander.current_command += Global.XbowHousing
 		Global.SelectedCommander.Units.append(instance)
 		Global.PlayerMoney -= Global.XbowCost
+		var statblock = Troop_Stats.instantiate()
+		$CommanderStats.troop_menu.add_child(statblock)
 		Check_Troops()
 
 
@@ -215,7 +243,6 @@ func on_load_game(saved_data:SavedData):
 
 
 func _on_wave_timer_timeout():
-	print(get_parent().get_node("SpawnController").warnings)
 	get_parent().get_node("SpawnController").Enemy_Spawn()
 	for w in get_parent().get_node("SpawnController").warnings:
 		w.visible = false
