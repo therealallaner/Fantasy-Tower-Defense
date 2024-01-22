@@ -10,7 +10,10 @@ func _ready():
 	AggroWeight = 15
 	Find_Target()
 
-
+func Xbow():
+	pass
+	
+	
 func _on_attack_range_body_entered(body):
 	if canattack:
 		var Tower = get_parent().get_node_or_null("TheTower")

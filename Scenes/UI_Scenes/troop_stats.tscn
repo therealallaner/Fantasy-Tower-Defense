@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://4rb7extlypv"]
 
-[ext_resource type="Script" path="res://TroopStats.gd" id="1_4pruw"]
+[ext_resource type="Script" path="res://Scripts/UIStuff/TroopStats.gd" id="1_35lha"]
 [ext_resource type="Texture2D" uid="uid://jhmiwpifw7fc" path="res://Assets/Fantasy Wooden GUI  Free/Fantasy Wooden GUI  Free/PNG/UI board Small  stone.png" id="2_ds60x"]
 [ext_resource type="Texture2D" uid="uid://1bbvi1pcs3a5" path="res://Assets/My Sprites/LowMeleeUnit.png" id="3_ntpqa"]
 
@@ -19,7 +19,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_4pruw")
+script = ExtResource("1_35lha")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(190, 120)

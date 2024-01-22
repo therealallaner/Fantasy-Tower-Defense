@@ -1,17 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://builrbf3uu46i"]
+[gd_scene load_steps=6 format=3 uid="uid://dm7e5uq58wr81"]
 
-[ext_resource type="Script" path="res://Scripts/army_select.gd" id="1_dhnjv"]
-[ext_resource type="Texture2D" uid="uid://bsk4ie7qrdyor" path="res://Assets/UI/MainMenuMenuBG.png" id="2_vebau"]
-[ext_resource type="Theme" uid="uid://cp2e2s82wiif8" path="res://Assets/UI/Themes/Augusta.tres" id="3_v807f"]
+[ext_resource type="Script" path="res://Scripts/Difficulty.gd" id="1_gmmur"]
+[ext_resource type="Texture2D" uid="uid://bsk4ie7qrdyor" path="res://Assets/UI/MainMenuMenuBG.png" id="2_2c2n2"]
+[ext_resource type="Theme" uid="uid://cp2e2s82wiif8" path="res://Assets/UI/Themes/Augusta.tres" id="3_n8lkf"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6kkmb"]
-texture = ExtResource("2_vebau")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sa8l4"]
+texture = ExtResource("2_2c2n2")
 
-[sub_resource type="Theme" id="Theme_earg7"]
-PanelContainer/styles/panel = SubResource("StyleBoxTexture_6kkmb")
+[sub_resource type="Theme" id="Theme_wu7rx"]
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_sa8l4")
 
-[node name="ArmySelect" type="CanvasLayer"]
-script = ExtResource("1_dhnjv")
+[node name="Difficulty" type="CanvasLayer"]
+script = ExtResource("1_gmmur")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 anchors_preset = 8
@@ -25,7 +25,7 @@ offset_right = 466.0
 offset_bottom = 346.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_earg7")
+theme = SubResource("Theme_wu7rx")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
@@ -37,24 +37,22 @@ theme_override_constants/margin_bottom = 100
 [node name="HBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-theme = ExtResource("3_v807f")
+theme = ExtResource("3_n8lkf")
 
-[node name="1" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer"]
+[node name="Easy" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Army 1"
+text = "Easy"
 
-[node name="2" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer"]
-visible = false
+[node name="Medium" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Army 2"
+text = "Medium"
 
-[node name="3" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer"]
-visible = false
+[node name="Hard" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Army 3"
+text = "Hard"
 
 [node name="Spacer" type="Control" parent="PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -81,6 +79,8 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
 text = "Quit"
 
-[connection signal="pressed" from="PanelContainer/MarginContainer/HBoxContainer/1" to="." method="_on__pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/HBoxContainer/Easy" to="." method="_on_easy_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/HBoxContainer/Medium" to="." method="_on_medium_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/HBoxContainer/Hard" to="." method="_on_hard_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/HBoxContainer/HBoxContainer/Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/HBoxContainer/HBoxContainer/Quit" to="." method="_on_quit_pressed"]

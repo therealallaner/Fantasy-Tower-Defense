@@ -81,10 +81,10 @@ func Randomize_Rewards():
 		rewards.append(CommanderSpace)
 		
 	if !isCapUnlocked and Global.CurrWave > 1:
+		print("isCapUnlocked ",isCapUnlocked," ",Global.CurrWave)
 		var rng = randf()
 		var percent = rng * 100
 		var newpercent = percent + (Global.CurrWave * 3)
-		print(percent," ",newpercent)
 		if newpercent > 85:
 			rewards.append(Captain_Unlock)
 			

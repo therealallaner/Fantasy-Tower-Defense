@@ -21,11 +21,6 @@ extends CanvasLayer
 var CommanderRounds = [4,7,11,15,21]
 var isPaused = false
 
-var sprites = {
-	'Infantry': infantry_pic,
-	'Xbow': xbow_pic,
-	'Captain': cap_pic,
-}
 var Inf_Stats = []
 var Xbow_Stats = []
 var Cap_Stats = []
@@ -80,9 +75,21 @@ func Troop_Stat_Blocks():
 		var statblock = Troop_Stats.instantiate()
 		$CommanderStats.troop_menu.add_child(statblock)
 		var index = Global.SelectedCommander.Units.find(u)
-		statblock.HP.text = "HP: " + str(u.HP) + "/50"
+		statblock.HP.text = "HP: " + str(u.HP)
 		statblock.dmg.text = "Damage: " + str(u.attackDMG)
-	
+		
+		if u.has_method("Infantry"):
+			statblock.sprite.texture = infantry_pic
+			statblock.troop.text = "Infantry"
+			
+		if u.has_method("Xbow"):
+			statblock.sprite.texture = xbow_pic
+			statblock.troop.text = "Archer"
+			
+		if u.has_method("Captain"):
+			statblock.sprite.texture = cap_pic
+			statblock.troop.text = "Captain"
+			
 func Button_Management(space):
 	if space < Global.InfantryHousing:
 		Inf_B.disabled = true

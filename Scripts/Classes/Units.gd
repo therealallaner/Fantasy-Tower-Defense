@@ -30,6 +30,7 @@ func _process(delta):
 		else:
 			var index = Command.Units.find(self)
 			Command.Units.remove_at(index)
+			Command.current_command -= 1
 			
 		queue_free()
 		

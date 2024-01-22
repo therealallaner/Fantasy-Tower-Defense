@@ -16,6 +16,9 @@ func _process(delta):
 	if isattacking:
 		CharAnim.play("Attack")
 
+func Infantry():
+	pass
+	
 func _on_attack_range_body_entered(body):
 	if canattack:
 		var Tower = get_parent().get_node_or_null("TheTower")

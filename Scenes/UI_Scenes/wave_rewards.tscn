@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://uampch6miue6"]
+[gd_scene load_steps=13 format=3 uid="uid://uampch6miue6"]
 
 [ext_resource type="Theme" uid="uid://cp2e2s82wiif8" path="res://Assets/UI/Themes/Augusta.tres" id="1_0658s"]
 [ext_resource type="Script" path="res://Scripts/WaveRewards/wave_rewards.gd" id="2_3cxde"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://dumxnopujhu6f" path="res://Assets/TestTextures/RangedUpgrade.png" id="7_0say8"]
 [ext_resource type="Texture2D" uid="uid://ck7r0jtlhjbm6" path="res://Assets/My Sprites/Tower.png" id="8_fldyy"]
 [ext_resource type="Texture2D" uid="uid://bv58vt22wws37" path="res://Assets/My Sprites/LowCommander.png" id="9_ni11u"]
+[ext_resource type="Texture2D" uid="uid://u6febikgtx8w" path="res://Assets/My Sprites/low captain.png" id="10_58ar8"]
+[ext_resource type="Texture2D" uid="uid://boyii614w17wt" path="res://Assets/TestTextures/CaptainButton.png" id="11_6bw85"]
 
 [node name="WaveRewards" type="PanelContainer"]
 anchors_preset = 8
@@ -32,6 +34,8 @@ melee = ExtResource("6_oli7u")
 ranged = ExtResource("7_0say8")
 tower = ExtResource("8_fldyy")
 commander = ExtResource("9_ni11u")
+captain = ExtResource("10_58ar8")
+support = ExtResource("11_6bw85")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2

@@ -3,7 +3,8 @@ extends CanvasLayer
 
 
 func _on__pressed():
-	get_tree().change_scene_to_file("res://Scenes/node_2d.tscn")
+	self.visible = false
+	get_parent().get_node("Difficulty").visible = true
 
 
 func _on_back_pressed():

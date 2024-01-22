@@ -28,6 +28,7 @@ texture = ExtResource("2_obh4j")
 position = Vector2(967, 530)
 
 [node name="Game UI" parent="." instance=ExtResource("4_j1k6x")]
+visible = false
 
 [node name="SpawnController" parent="." instance=ExtResource("6_00qip")]
 

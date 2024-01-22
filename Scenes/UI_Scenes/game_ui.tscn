@@ -25,7 +25,6 @@ max_value = 250.0
 
 [node name="WaveRewards" parent="." instance=ExtResource("2_2islk")]
 captain = ExtResource("4_ned5h")
-support = ExtResource("4_ned5h")
 
 [node name="GameStats" type="VBoxContainer" parent="."]
 anchors_preset = 5

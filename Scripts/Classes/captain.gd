@@ -4,13 +4,16 @@ class_name Captain
 func _ready():
 	isenemy = false
 	attackDMG = Global.CaptainDmg
-	HP = 15
+	HP = 100
 	AggroWeight = -15
 	Find_Target()
 
 func _process(delta):
 	if isattacking:
 		CharAnim.play("Attack")
+
+func Captain():
+	pass
 
 func _on_attack_range_body_entered(body):
 	if canattack:

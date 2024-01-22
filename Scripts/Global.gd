@@ -19,6 +19,8 @@ var TowerHP: int
 var WaveisActive = false
 var WaveReward = false
 
+var difficulty = 0
+
 
 func loser():
 	get_tree().change_scene_to_file("res://Scenes/TitleScreen.tscn")

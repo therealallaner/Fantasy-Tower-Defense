@@ -17,9 +17,19 @@ var g_spacer = false
 var s_spacer = false
 var spawners = []
 var warnings = []
-var bossWaves = [6,12,18,24]
+var bossWaves = [8,16,24,32]
 
 func _ready():
+	if Global.difficulty == 2:
+		var extraBoss = [6,18]
+		for w in extraBoss:
+			bossWaves.append(w)
+			
+	if Global.difficulty == 3:
+		var extraBoss = [6,12,18,30]
+		for w in extraBoss:
+			bossWaves.append(w)
+		
 	for s in get_parent().get_node(WaveNode).get_children():
 		spawners.append(s.global_position)
 		for w in s.get_children():
@@ -51,8 +61,20 @@ func Enemy_Spawn():
 	
 	if Global.CurrWave in bossWaves:
 		var exponent: int = Global.ExtraMoney
-		GobbySpawn(Global.CurrWave+gobbycount+exponent)
-		SorcSpawn()
+		
+		if Global.difficulty == 1:
+			GobbySpawn(Global.CurrWave+gobbycount)
+			
+		if Global.difficulty == 2:
+			GobbySpawn(Global.CurrWave+gobbycount+Global.difficulty)
+			SorcSpawn()
+			gobbycount += Global.difficulty
+			
+		if Global.difficulty == 3:
+			GobbySpawn(Global.CurrWave+gobbycount+exponent+Global.difficulty)
+			SorcSpawn()
+			gobbycount += Global.difficulty + exponent
+			sorccount += Global.difficulty
 
 func GobbySpawn(count):
 	if Global.CurrWave in bossWaves:
@@ -98,28 +120,32 @@ func SorcSpawn():
 
 func Gobby_Damage_Upgrade():
 	if Global.CurrWave <= 6:
-		return 2
+		return 1 + Global.difficulty
 	elif Global.CurrWave <=10:
-		return 3
+		return 2 + Global.difficulty
 	elif Global.CurrWave <= 15:
-		return 5
+		return 4 + Global.difficulty
 	elif Global.CurrWave <= 23:
-		return 7
+		return 6 + Global.difficulty
 	elif Global.CurrWave <= 27:
-		return 8
+		return 9 + Global.difficulty
+	else:
+		return 12 + Global.difficulty
 		
 		
 func Gobby_HP_Upgrade():
 	if Global.CurrWave <= 6:
-		return 12
+		return 11 + Global.difficulty
 	elif Global.CurrWave <=10:
-		return 15
+		return 14 + Global.difficulty
 	elif Global.CurrWave <= 15:
-		return 18
+		return 19 + Global.difficulty
 	elif Global.CurrWave <= 23:
-		return 24
+		return 24 + Global.difficulty
 	elif Global.CurrWave <= 27:
-		return 27
+		return 28 + Global.difficulty
+	else:
+		return 33 + Global.difficulty
 
 
 func _on_goblin_spacer_timeout():
