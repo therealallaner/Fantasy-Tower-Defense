@@ -300,6 +300,13 @@ text = "Resume"
 layout_mode = 2
 text = "Controls"
 
+[node name="AutoWave" type="CheckButton" parent="PauseMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 150
+text = "Auto-Wave"
+alignment = 1
+
 [node name="Quit" type="Button" parent="PauseMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Main Menu"
@@ -328,4 +335,5 @@ script = ExtResource("8_d2lae")
 [connection signal="pressed" from="Controls/MarginContainer/VBoxContainer/OK" to="." method="_on_ok_pressed"]
 [connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/Controls" to="." method="_on_controls_pressed"]
+[connection signal="toggled" from="PauseMenu/MarginContainer/VBoxContainer/AutoWave" to="." method="_on_auto_wave_toggled"]
 [connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

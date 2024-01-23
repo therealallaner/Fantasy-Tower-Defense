@@ -48,6 +48,7 @@ func _ready():
 	reward_buttons.append(R2)
 
 func Randomize_Rewards():
+	print(rewards)
 	Update_Tooltips()
 	random_rewards = []
 	var isLast = false
@@ -80,7 +81,7 @@ func Randomize_Rewards():
 	if Global.CurrWave == 7:
 		rewards.append(CommanderSpace)
 		
-	if !isCapUnlocked and Global.CurrWave > 1:
+	if Captain_Unlock not in rewards and Global.CurrWave > 1:
 		print("isCapUnlocked ",isCapUnlocked," ",Global.CurrWave)
 		var rng = randf()
 		var percent = rng * 100
@@ -230,3 +231,5 @@ func Xbow_Proj_Speed():
 func Close():
 	self.hide()
 	WaveButton.disabled = false
+	if Global.autoWave:
+		get_parent().Start_Next_Wave()

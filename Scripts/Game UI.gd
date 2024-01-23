@@ -40,6 +40,7 @@ func _ready():
 #	$CommanderStats.visible = false
 	Cap_B.visible = false
 	CapCount.visible = false
+	$WaveRewards/MarginContainer/VBoxContainer/CommanderLabel.visible = false
 
 func _process(delta):
 	Money.text = "$" + str(Global.PlayerMoney)
@@ -128,6 +129,10 @@ func Add_Commander():
 		var targetpos = get_parent().get_node("TheTower/UnitSpawner").global_position
 		instance.position = targetpos
 		get_parent().add_child(instance)
+		$WaveRewards/MarginContainer/VBoxContainer/CommanderLabel.visible = true
+		$WaveRewards/MarginContainer/VBoxContainer/CommanderLabel.text = "You also get a new Commander!"
+	else:
+		$WaveRewards/MarginContainer/VBoxContainer/CommanderLabel.visible = false
 
 func Pause():
 	if $Controls.visible:
@@ -197,13 +202,15 @@ func _on_quit_pressed():
 
 
 func _on_wave_controller_pressed():
+	Start_Next_Wave()
+
+func Start_Next_Wave():
 	WaveButton.disabled = true
 	Global.CurrWave += 1
 	get_parent().get_node("SpawnController").WaveNode = "Wave " + str(Global.CurrWave)
 	get_parent().get_node("SpawnController").Set_Spawns()
 	$GameStats/WaveTimer.start()
 	$GameStats/DangerTimer.start()
-
 
 func _on_timer_timeout():
 	Global.WaveReward = true
@@ -260,3 +267,7 @@ func _on_wave_timer_timeout():
 func _on_danger_timer_timeout():
 	for w in get_parent().get_node("SpawnController").warnings:
 		w.visible = !w.visible
+
+
+func _on_auto_wave_toggled(button_pressed):
+	Global.autoWave = !Global.autoWave

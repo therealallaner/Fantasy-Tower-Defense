@@ -50,6 +50,7 @@ layout_mode = 2
 [node name="test 1" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Nice Wave!!"
+horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -86,6 +87,12 @@ texture_normal = ExtResource("3_o7srh")
 [node name="Spacer3" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="CommanderLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "You also get a new Commander!"
+horizontal_alignment = 1
 
 [node name="test 2" type="Button" parent="MarginContainer/VBoxContainer"]
 visible = false

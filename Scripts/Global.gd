@@ -18,6 +18,7 @@ var CaptainDmg = 5
 var TowerHP: int
 var WaveisActive = false
 var WaveReward = false
+var autoWave = false
 
 var difficulty = 0
 
